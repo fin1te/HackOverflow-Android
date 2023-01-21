@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.HackOverflow" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.HackOverflow" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/drac_purple</item>
         <item name="colorPrimaryVariant">@color/drac_white</item>
