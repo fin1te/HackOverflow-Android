@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="drac_dark">#15171B</color>
+<!--    <color name="drac_bg">#1d1e26</color>-->
+    <color name="drac_bg">#282a36</color>
+    <color name="drac_gray">#626784</color>
+    <color name="drac_white">#f8f8f2</color>
+    <color name="drac_purple">#9580ff</color>
 </resources>
