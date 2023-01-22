@@ -1,14 +1,15 @@
 package com.fin1te.hackoverflow.ui
 
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.databinding.FragmentProfileBinding
-import de.hdodenhof.circleimageview.CircleImageView
+import java.util.*
 
 
 class ProfileFragment : Fragment() {
@@ -27,10 +28,15 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val drawableArray = arrayOf(
+            R.drawable.z_ph_1, R.drawable.z_ph_2, R.drawable.z_ph_3,
+            R.drawable.z_ph_4, R.drawable.z_ph_5, R.drawable.z_ph_6,
+            R.drawable.z_ph_7, R.drawable.z_ph_8, R.drawable.z_ph_9, R.drawable.z_ph_10
+        )
 
-        Glide.with(this@ProfileFragment)
-            .load("https://xsgames.co/randomusers/assets/avatars/male/77.jpg")
-            .centerCrop()
-            .into(binding!!.profileImage)
+        binding!!.profileImage.setImageResource(drawableArray[Random().nextInt(10)])
+
     }
+
+
 }
