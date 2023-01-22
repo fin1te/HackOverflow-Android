@@ -35,6 +35,9 @@ class ProfileFragment : Fragment() {
         )
 
         binding!!.profileImage.setImageResource(drawableArray[Random().nextInt(10)])
+        binding!!.picTeammate1.setImageResource(drawableArray[Random().nextInt(10)])
+        binding!!.picTeammate2.setImageResource(drawableArray[Random().nextInt(10)])
+        binding!!.picTeammate3.setImageResource(drawableArray[Random().nextInt(10)])
 
     }
 
