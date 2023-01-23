@@ -3,6 +3,53 @@
     <string name="title_about">About Us</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string-array name="colorArray">
+        <item>White</item>
+        <item>Cyan</item>
+        <item>Orange</item>
+        <item>Black</item>
+        <item>Gray</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Purple</item>
+        <item>Pink</item>
+        <item>Red</item>
+        <item>Brown</item>
+        <item>Gold</item>
+        <item>Silver</item>
+        <item>Violet</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+    </string-array>
+
+    <string-array name="livingBeingArray">
+        <item>Fox</item>
+        <item>Whale</item>
+        <item>Spider</item>
+        <item>Bear</item>
+        <item>Wolf</item>
+        <item>Lion</item>
+        <item>Tiger</item>
+        <item>Elephant</item>
+        <item>Giraffe</item>
+        <item>Hippo</item>
+        <item>Raccoon</item>
+        <item>Squirrel</item>
+        <item>Penguin</item>
+        <item>Gorilla</item>
+        <item>Jaguar</item>
+        <item>Kangaroo</item>
+        <item>Otter</item>
+        <item>Puma</item>
+        <item>Quail</item>
+        <item>Hedgehog</item>
+        <item>Dragon</item>
+        <item>Leopard</item>
+        <item>Owl</item>
+        <item>Pelican</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
