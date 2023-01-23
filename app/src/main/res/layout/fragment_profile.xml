@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -204,11 +205,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:paddingBottom= "90dp"
                     android:orientation="vertical">
 
                     <!--GoogleButton Card-->
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/googleSignInBtn"
+                        android:id="@+id/google_sign_in"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top|center"
@@ -318,7 +320,9 @@
                                 app:dividerInsetStart="15dp"
                                 app:dividerThickness="2dp" />
 
+                            <!-- yaha karna karan xD -->
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/logoutBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -333,6 +337,7 @@
 
 
                     </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
 
             </LinearLayout>
