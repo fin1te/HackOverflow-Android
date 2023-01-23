@@ -1,5 +1,6 @@
 package com.fin1te.hackoverflow.ui
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
@@ -14,7 +15,7 @@ import java.util.*
 
 class ProfileFragment : Fragment() {
 
-    private  var binding : FragmentProfileBinding? = null
+    private var binding: FragmentProfileBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +26,7 @@ class ProfileFragment : Fragment() {
         return fragmentBinding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -34,11 +36,23 @@ class ProfileFragment : Fragment() {
             R.drawable.z_ph_7, R.drawable.z_ph_8, R.drawable.z_ph_9, R.drawable.z_ph_10
         )
 
+        val colors = resources.getStringArray(R.array.colorArray)
+        val livingBeings = resources.getStringArray(R.array.livingBeingArray)
+        val randomColor = colors[Random().nextInt(colors.size)]
+        val randomLivingBeing = livingBeings[Random().nextInt(livingBeings.size)]
+        val randomName = "$randomColor $randomLivingBeing"
+
+        binding!!.apply {
+            user1name.text = "$randomColor $randomLivingBeing"
+            user2name.text = livingBeings[Random().nextInt(livingBeings.size)]
+            user3name.text = livingBeings[Random().nextInt(livingBeings.size)]
+            user4name.text = livingBeings[Random().nextInt(livingBeings.size)]
+        }
+
         binding!!.profileImage.setImageResource(drawableArray[Random().nextInt(10)])
         binding!!.picTeammate1.setImageResource(drawableArray[Random().nextInt(10)])
         binding!!.picTeammate2.setImageResource(drawableArray[Random().nextInt(10)])
         binding!!.picTeammate3.setImageResource(drawableArray[Random().nextInt(10)])
-
     }
 
 
