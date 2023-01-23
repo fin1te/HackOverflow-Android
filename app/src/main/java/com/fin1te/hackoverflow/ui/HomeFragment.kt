@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
             set(2023, Calendar.MARCH, 16, 0, 0, 0)
         }.time
 
-        val countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 1000) {
+        val countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 100) {
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 val days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
