@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.TlOfflineFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.TlOfflineFragment">
 
-</FrameLayout>
+        <xyz.sangcomz.stickytimelineview.TimeLineRecyclerView
+            android:id="@+id/offline_rec_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:isSticky="true"
+            app:sectionBackgroundColor="@color/drac_dark_gray"
+            app:sectionTitleTextColor="@color/drac_purple"
+            app:sectionSubTitleTextColor="@color/drac_gray"
+            app:sectionTitleTextSize="16sp"
+            app:sectionSubTitleTextSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:timeLineColor="@color/drac_purple"
+            app:timeLineDotColor="@color/drac_gray"
+            app:timeLineDotRadius="4dp"
+            app:timeLineDotStrokeColor="#ffffff"
+            app:timeLineDotStrokeSize="2dp"
+            app:timeLineMode="vertical"
+            app:timeLineWidth="4dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

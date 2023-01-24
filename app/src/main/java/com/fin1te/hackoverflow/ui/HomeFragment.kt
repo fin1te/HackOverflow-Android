@@ -7,15 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toolbar
-import androidx.fragment.app.FragmentManager
-import androidx.appcompat.content.res.AppCompatResources
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
-import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.adapter.TimelinePagerAdapters
 import com.fin1te.hackoverflow.databinding.FragmentHomeBinding
-import com.fin1te.hackoverflow.databinding.FragmentProfileBinding
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -43,13 +38,18 @@ class HomeFragment : Fragment() {
 
         startCountDown() // Starts the countdown timer
 
+        binding!!.countDownTimerCard.setOnLongClickListener {
+            startCountDown()
+            Toast.makeText(context, "Yay", Toast.LENGTH_SHORT).show()
+            true
+        }
 
         binding!!.apply {
 
             pViewPager = myPagerView
             pTabs = tabs
 
-            pagerAdapters = TimelinePagerAdapters(requireFragmentManager())
+            pagerAdapters = TimelinePagerAdapters(childFragmentManager)
 
             pagerAdapters.addFragment(TlOfflineFragment(),"Offline")
             pagerAdapters.addFragment(TlOnlineFragment(),"Online")
@@ -62,15 +62,18 @@ class HomeFragment : Fragment() {
 //            pTabs.getTabAt(1)!!.setIcon(R.drawable.onlineIcon)
         }
 
-
     }
+
+
+
+
 
     private fun startCountDown() {
         val targetDate = Calendar.getInstance().apply {
             set(2023, Calendar.MARCH, 16, 0, 0, 0)
         }.time
 
-        val countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 100) {
+        val countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 1000) {
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 val days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
