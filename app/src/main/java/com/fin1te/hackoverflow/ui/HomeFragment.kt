@@ -7,9 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toolbar
+import androidx.fragment.app.FragmentManager
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.viewpager.widget.ViewPager
 import com.fin1te.hackoverflow.R
+import com.fin1te.hackoverflow.adapter.TimelinePagerAdapters
 import com.fin1te.hackoverflow.databinding.FragmentHomeBinding
 import com.fin1te.hackoverflow.databinding.FragmentProfileBinding
+import com.google.android.material.tabs.TabLayout
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -17,6 +24,9 @@ import java.util.concurrent.TimeUnit
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
+    private lateinit var pTabs: TabLayout
+    private lateinit var pViewPager: ViewPager
+    private lateinit var pagerAdapters: TimelinePagerAdapters
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +37,30 @@ class HomeFragment : Fragment() {
         return fragmentBinding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         startCountDown() // Starts the countdown timer
+
+
+        binding!!.apply {
+
+            pViewPager = myPagerView
+            pTabs = tabs
+
+            pagerAdapters = TimelinePagerAdapters(requireFragmentManager())
+
+            pagerAdapters.addFragment(TlOfflineFragment(),"Offline")
+            pagerAdapters.addFragment(TlOnlineFragment(),"Online")
+
+            pViewPager.adapter = pagerAdapters
+
+            pTabs.setupWithViewPager(pViewPager)
+            // Tab Icons
+//            pTabs.getTabAt(0)!!.setIcon(R.drawable.offlineIcon)
+//            pTabs.getTabAt(1)!!.setIcon(R.drawable.onlineIcon)
+        }
 
 
     }

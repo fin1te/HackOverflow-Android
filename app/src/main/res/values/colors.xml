@@ -14,4 +14,5 @@
     <color name="drac_gray">#626784</color>
     <color name="drac_white">#f8f8f2</color>
     <color name="drac_purple">#9580ff</color>
+    <color name="drac_purple_low_opacity">#339580FF</color>
 </resources>
