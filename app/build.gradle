@@ -59,5 +59,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
 
     implementation project(':circulartimerview')
-    implementation 'com.github.vipulasri:timelineview:1.1.5'
+    implementation 'io.github.sangcomz:StickyTimeLine:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 }
