@@ -3,6 +3,7 @@
     <string name="title_about">About Us</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string name="title_notice">Notification</string>
     <string-array name="colorArray">
         <item>White</item>
         <item>Cyan</item>
