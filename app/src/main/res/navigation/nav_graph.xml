@@ -20,4 +20,8 @@
         android:name="com.fin1te.hackoverflow.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/noticeHolderFragment"
+        android:name="com.fin1te.hackoverflow.ui.NoticeHolderFragment"
+        android:label="fragment_notice_holder" />
 </navigation>

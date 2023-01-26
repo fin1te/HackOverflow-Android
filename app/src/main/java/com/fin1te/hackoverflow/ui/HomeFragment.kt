@@ -46,8 +46,8 @@ class HomeFragment : Fragment() {
 
         binding!!.apply {
 
-            pViewPager = myPagerView
-            pTabs = tabs
+            this@HomeFragment.pViewPager = myPagerView
+            this@HomeFragment.pTabs = tabs
 
             pagerAdapters = TimelinePagerAdapters(childFragmentManager)
 

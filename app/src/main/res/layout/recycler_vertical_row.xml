@@ -6,13 +6,14 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="5dp"
     android:backgroundTint="@color/drac_dark"
-    app:cardCornerRadius="18dp">
+    app:cardCornerRadius="15dp">
 
     <TextView
         android:id="@+id/full_name_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
         android:fontFamily="@font/fira_code"
         android:textDirection="locale"
         tools:text="name" />
