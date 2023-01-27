@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.adapter.EventAdapter
-import com.fin1te.hackoverflow.databinding.FragmentTlOfflineBinding
 import com.fin1te.hackoverflow.databinding.FragmentTlOnlineBinding
 import com.fin1te.hackoverflow.model.Event
 import com.fin1te.hackoverflow.model.OnlineEventRepo
@@ -77,7 +76,7 @@ class TlOnlineFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
     }
 }

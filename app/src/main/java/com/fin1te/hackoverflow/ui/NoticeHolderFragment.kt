@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
-import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.adapter.NoticePagerAdapters
-import com.fin1te.hackoverflow.adapter.TimelinePagerAdapters
 import com.fin1te.hackoverflow.databinding.FragmentNoticeHolderBinding
 import com.google.android.material.tabs.TabLayout
 
@@ -53,7 +51,7 @@ class NoticeHolderFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
     }
 }

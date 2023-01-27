@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.databinding.FragmentOfflineNoticeBinding
 
 
@@ -27,7 +26,7 @@ class OfflineNoticeFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
     }
 }

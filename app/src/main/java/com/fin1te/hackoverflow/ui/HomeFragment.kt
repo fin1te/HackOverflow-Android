@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
                 //Do whatever you want with the time left
                 //for example updating a text view
-                binding!!.apply {
+                binding.apply {
                     daysCircular.progress = days.toFloat()
                     hoursCircular.progress = hours.toFloat()
                     minutesCircular.progress = minutes.toFloat()
@@ -105,8 +105,8 @@ class HomeFragment : Fragment() {
         }.start()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
         _binding = null
+        super.onDestroy()
     }
 }
