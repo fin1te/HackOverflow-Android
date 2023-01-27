@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
-import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.adapter.NoticePagerAdapters
-import com.fin1te.hackoverflow.adapter.TimelinePagerAdapters
 import com.fin1te.hackoverflow.databinding.FragmentNoticeHolderBinding
 import com.google.android.material.tabs.TabLayout
 
 
 class NoticeHolderFragment : Fragment() {
 
-    private var binding: FragmentNoticeHolderBinding? = null
+    private var _binding: FragmentNoticeHolderBinding? = null
+    private val binding get() = _binding!!
     private lateinit var noticeTabs: TabLayout
     private lateinit var noticeViewPager: ViewPager
     private lateinit var noticePagerAdapters: NoticePagerAdapters
@@ -25,7 +24,7 @@ class NoticeHolderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val fragmentBinding = FragmentNoticeHolderBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -49,5 +48,10 @@ class NoticeHolderFragment : Fragment() {
 //            pTabs.getTabAt(0)!!.setIcon(R.drawable.offlineIcon)
 //            pTabs.getTabAt(1)!!.setIcon(R.drawable.onlineIcon)
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

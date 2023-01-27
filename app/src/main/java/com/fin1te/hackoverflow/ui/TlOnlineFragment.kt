@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.adapter.EventAdapter
-import com.fin1te.hackoverflow.databinding.FragmentTlOfflineBinding
 import com.fin1te.hackoverflow.databinding.FragmentTlOnlineBinding
 import com.fin1te.hackoverflow.model.Event
 import com.fin1te.hackoverflow.model.OnlineEventRepo
@@ -18,15 +17,15 @@ import xyz.sangcomz.stickytimelineview.model.SectionInfo
 
 class TlOnlineFragment : Fragment() {
 
-    private var binding: FragmentTlOnlineBinding? = null
-
+    private var _binding: FragmentTlOnlineBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentTlOnlineBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -37,20 +36,20 @@ class TlOnlineFragment : Fragment() {
 
     private fun initVerticalRecyclerView() {
         val eventList = getEventList()
-        binding!!.onlineRecView.adapter = EventAdapter(
+        binding.onlineRecView.adapter = EventAdapter(
             layoutInflater,
             eventList,
             R.layout.recycler_vertical_row
         )
 
         //Currently only LinearLayoutManager is supported.
-        binding!!.onlineRecView.layoutManager = LinearLayoutManager(
+        binding.onlineRecView.layoutManager = LinearLayoutManager(
             requireContext(),
             RecyclerView.VERTICAL,
             false
         )
 
-        binding!!.onlineRecView.apply {
+        binding.onlineRecView.apply {
             addItemDecoration(getSectionCallback(eventList))
         }
 
@@ -74,5 +73,10 @@ class TlOnlineFragment : Fragment() {
             }
 
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
