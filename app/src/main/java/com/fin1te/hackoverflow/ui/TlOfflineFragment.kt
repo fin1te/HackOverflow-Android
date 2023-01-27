@@ -17,15 +17,15 @@ import xyz.sangcomz.stickytimelineview.model.SectionInfo
 
 class TlOfflineFragment : Fragment() {
 
-    private var binding: FragmentTlOfflineBinding? = null
-
+    private var _binding: FragmentTlOfflineBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentTlOfflineBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -38,20 +38,20 @@ class TlOfflineFragment : Fragment() {
 
     private fun initVerticalRecyclerView() {
         val eventList = getEventList()
-        binding!!.offlineRecView.adapter = EventAdapter(
+        binding.offlineRecView.adapter = EventAdapter(
             layoutInflater,
             eventList,
             R.layout.recycler_vertical_row
         )
 
         //Currently only LinearLayoutManager is supported.
-        binding!!.offlineRecView.layoutManager = LinearLayoutManager(
+        binding.offlineRecView.layoutManager = LinearLayoutManager(
             requireContext(),
             RecyclerView.VERTICAL,
             false
         )
 
-        binding!!.offlineRecView.apply {
+        binding.offlineRecView.apply {
             addItemDecoration(getSectionCallback(eventList))
         }
 
@@ -75,5 +75,10 @@ class TlOfflineFragment : Fragment() {
             }
 
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

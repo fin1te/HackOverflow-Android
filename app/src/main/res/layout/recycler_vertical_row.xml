@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingHorizontal="5dp"
-    android:backgroundTint="@color/drac_dark"
-    app:cardCornerRadius="15dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/full_name_tv"
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:fontFamily="@font/fira_code"
-        android:textDirection="locale"
-        tools:text="name" />
+        android:backgroundTint="@color/drac_dark"
+        android:paddingHorizontal="5dp"
+        app:cardCornerRadius="15dp">
 
-</androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/full_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fira_code"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textDirection="locale"
+            tools:text="name" />
+
+    </androidx.cardview.widget.CardView>
+</layout>

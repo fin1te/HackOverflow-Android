@@ -18,7 +18,8 @@ import java.util.concurrent.TimeUnit
 
 class HomeFragment : Fragment() {
 
-    private var binding: FragmentHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var pTabs: TabLayout
     private lateinit var pViewPager: ViewPager
     private lateinit var pagerAdapters: TimelinePagerAdapters
@@ -29,7 +30,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -39,8 +40,7 @@ class HomeFragment : Fragment() {
 
         startCountDown() // Starts the countdown timer
 
-
-        binding!!.apply {
+        binding.apply {
 
             this@HomeFragment.pViewPager = myPagerView
             this@HomeFragment.pTabs = tabs
@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
                 //Do whatever you want with the time left
                 //for example updating a text view
-                binding!!.apply {
+                binding.apply {
                     daysCircular.progress = days.toFloat()
                     hoursCircular.progress = hours.toFloat()
                     minutesCircular.progress = minutes.toFloat()
@@ -97,5 +97,8 @@ class HomeFragment : Fragment() {
             }
         }.start()
     }
-
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }

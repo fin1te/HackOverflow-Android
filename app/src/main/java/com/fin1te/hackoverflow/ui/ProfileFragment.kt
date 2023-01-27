@@ -1,8 +1,6 @@
 package com.fin1te.hackoverflow.ui
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,14 +13,15 @@ import java.util.*
 
 class ProfileFragment : Fragment() {
 
-    private var binding: FragmentProfileBinding? = null
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         val fragmentBinding = FragmentProfileBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -42,18 +41,22 @@ class ProfileFragment : Fragment() {
         val randomLivingBeing = livingBeings[Random().nextInt(livingBeings.size)]
         val randomName = "$randomColor $randomLivingBeing"
 
-        binding!!.apply {
+        binding.apply {
             user1name.text = "$randomColor $randomLivingBeing"
             user2name.text = livingBeings[Random().nextInt(livingBeings.size)]
             user3name.text = livingBeings[Random().nextInt(livingBeings.size)]
             user4name.text = livingBeings[Random().nextInt(livingBeings.size)]
         }
 
-        binding!!.profileImage.setImageResource(drawableArray[Random().nextInt(10)])
-        binding!!.picTeammate1.setImageResource(drawableArray[Random().nextInt(10)])
-        binding!!.picTeammate2.setImageResource(drawableArray[Random().nextInt(10)])
-        binding!!.picTeammate3.setImageResource(drawableArray[Random().nextInt(10)])
+        binding.profileImage.setImageResource(drawableArray[Random().nextInt(10)])
+        binding.picTeammate1.setImageResource(drawableArray[Random().nextInt(10)])
+        binding.picTeammate2.setImageResource(drawableArray[Random().nextInt(10)])
+        binding.picTeammate3.setImageResource(drawableArray[Random().nextInt(10)])
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 
 }
