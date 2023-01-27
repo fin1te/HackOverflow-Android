@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var pTabs: TabLayout
     private lateinit var pViewPager: ViewPager
     private lateinit var pagerAdapters: TimelinePagerAdapters
+    private var countDownTimer: CountDownTimer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +39,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         startCountDown() // Starts the countdown timer
-
-        binding.countDownTimerCard.setOnLongClickListener {
-            startCountDown()
-            Toast.makeText(context, "Yay", Toast.LENGTH_SHORT).show()
-            true
-        }
 
         binding.apply {
 
@@ -67,15 +62,13 @@ class HomeFragment : Fragment() {
 
 
 
-
-
     private fun startCountDown() {
         val targetDate = Calendar.getInstance().apply {
             set(2023, Calendar.MARCH, 16, 0, 0, 0)
         }.time
 
-        val countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 1000) {
-            @SuppressLint("SetTextI18n")
+        countDownTimer?.cancel()
+        countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
                 val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 24
@@ -104,7 +97,6 @@ class HomeFragment : Fragment() {
             }
         }.start()
     }
-
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
