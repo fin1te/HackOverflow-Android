@@ -11,13 +11,14 @@ import com.fin1te.hackoverflow.databinding.FragmentOfflineNoticeBinding
 
 class OfflineNoticeFragment : Fragment() {
 
-    private var binding: FragmentOfflineNoticeBinding? = null
+    private var _binding: FragmentOfflineNoticeBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val fragmentBinding = FragmentOfflineNoticeBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -25,5 +26,8 @@ class OfflineNoticeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -11,13 +11,14 @@ import com.fin1te.hackoverflow.databinding.FragmentOnlineNoticeBinding
 
 class OnlineNoticeFragment : Fragment() {
 
-    private var binding: FragmentOnlineNoticeBinding? = null
+    private var _binding: FragmentOnlineNoticeBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val fragmentBinding = FragmentOnlineNoticeBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -25,4 +26,8 @@ class OnlineNoticeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

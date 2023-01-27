@@ -15,7 +15,8 @@ import com.google.android.material.tabs.TabLayout
 
 class NoticeHolderFragment : Fragment() {
 
-    private var binding: FragmentNoticeHolderBinding? = null
+    private var _binding: FragmentNoticeHolderBinding? = null
+    private val binding get() = _binding!!
     private lateinit var noticeTabs: TabLayout
     private lateinit var noticeViewPager: ViewPager
     private lateinit var noticePagerAdapters: NoticePagerAdapters
@@ -25,7 +26,7 @@ class NoticeHolderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val fragmentBinding = FragmentNoticeHolderBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
@@ -49,5 +50,10 @@ class NoticeHolderFragment : Fragment() {
 //            pTabs.getTabAt(0)!!.setIcon(R.drawable.offlineIcon)
 //            pTabs.getTabAt(1)!!.setIcon(R.drawable.onlineIcon)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
