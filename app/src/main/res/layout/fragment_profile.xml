@@ -234,9 +234,10 @@
                                 tools:ignore="ContentDescription" />
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/google_sign_in_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sign in with Google"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:textColor="@color/drac_white"
                                 android:textSize="18sp"
