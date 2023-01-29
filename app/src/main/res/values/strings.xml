@@ -51,6 +51,39 @@
         <item>Pelican</item>
     </string-array>
 
+    <string-array name="noNoticeArray">
+        <item>Hackathon mode: activated. Notifications: deactivated.</item>
+        <item>We\'re in the zone, no notifications allowed!</item>
+        <item>Hacking away, notifications can wait.</item>
+        <item>No notifications, just code and caffeine.</item>
+        <item>We\'re hacking like it\'s 1999, notifications be gone!</item>
+        <item>Sorry notifications, this is a hackathon, you\'re not invited!</item>
+        <item>Our focus is on hacking, not on notifications.</item>
+        <item>Notifications? We\'ve got bigger fish to fry.</item>
+        <item>Notifications? We\'ve got hacking to do.</item>
+        <item>Quiet as a library, not a single notification in sight.</item>
+        <item>All clear, no notifications to see here.</item>
+        <item>A moment of peace, no notifications to disturb.</item>
+        <item>A notification-free zone, enjoy the tranquility.</item>
+        <item>You\'re the chosen one! Find Rishabh to break out of the Matrix.     - Morpheus</item>
+        <item>No buzzing, no beeping, just silence.</item>
+        <item>Currently experiencing a notification drought.</item>
+        <item>The calm before the notification storm.</item>
+        <item>Notifications? None. Relax and enjoy the silence.</item>
+        <item>No alerts, no interruptions, just you and your hackathon.</item>
+        <item>Notifications at bay, focus on coding and creating.</item>
+        <item>Nothing to see here, move along.</item>
+        <item>All quiet on the notification front.</item>
+        <item>The silence is deafening.</item>
+        <item>No updates, no news, just peace and quiet.</item>
+        <item>Notifications? None to be found.</item>
+        <item>No alerts, no fuss, just chill.</item>
+        <item>Not a peep from the notification world.</item>
+        <item>No updates to report, carry on with your day.</item>
+        <item>Notifications? Not in our hackathon vocabulary.</item>
+        <item>The hackathon is in session, notifications are adjourned.</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

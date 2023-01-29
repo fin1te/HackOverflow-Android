@@ -61,4 +61,5 @@ dependencies {
     implementation project(':circulartimerview')
     implementation 'io.github.sangcomz:StickyTimeLine:1.0.0'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation 'com.airbnb.android:lottie:5.2.0'
 }
