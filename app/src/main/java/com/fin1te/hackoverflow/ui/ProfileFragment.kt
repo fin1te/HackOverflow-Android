@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.databinding.FragmentProfileBinding
@@ -62,7 +64,6 @@ class ProfileFragment : Fragment() {
         }
 
 
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .requestProfile()
@@ -71,6 +72,7 @@ class ProfileFragment : Fragment() {
 
         val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
+        // Sign in with Google
         binding.googleSignIn.setOnClickListener {
             val sharedPref = requireActivity().getSharedPreferences("signInData", Context.MODE_PRIVATE)
             val email = sharedPref.getString("email", null)
@@ -86,6 +88,7 @@ class ProfileFragment : Fragment() {
 
         binding.logoutBtn.setOnClickListener {
 
+            // Check if user is signed out already
             val sharedPref = requireActivity().getSharedPreferences("signInData", Context.MODE_PRIVATE)
             val email = sharedPref.getString("email", null)
             val name = sharedPref.getString("name", null)
@@ -93,16 +96,37 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), "Already Signed Out", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            googleSignInClient.signOut()
-            Toast.makeText(requireContext(), "Signed Out", Toast.LENGTH_SHORT).show()
-            binding.googleSignInText.text = "Sign in with Google"
-//            val sharedPref =
-//                requireActivity().getSharedPreferences("signInData", Context.MODE_PRIVATE)
-            val editor = sharedPref.edit()
-            editor.clear()
-            editor.apply()
-            initializeNames(binding.user1name, null, null, null)
-            initializePics(binding.profileImage, null, null, null)
+
+            // Show logout dialog box if user is signed in
+            val logoutDialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
+            val logoutDialog = AlertDialog.Builder(requireContext())
+                .setCancelable(true)
+                .setView(logoutDialogView)
+                .create()
+
+            logoutDialogView.findViewById<CardView>(R.id.btnLogoutNo).setOnClickListener {
+                logoutDialog.dismiss()
+            }
+
+            logoutDialogView.findViewById<CardView>(R.id.btnLogoutYes).setOnClickListener {
+
+                // Sign out from Google and clear shared preferences
+                googleSignInClient.signOut()
+                Toast.makeText(requireContext(), "Signed Out", Toast.LENGTH_SHORT).show()
+                binding.googleSignInText.text = "Sign in with Google"
+                val editor = sharedPref.edit()
+                editor.clear()
+                editor.apply()
+                initializeNames(binding.user1name, null, null, null)
+                initializePics(binding.profileImage, null, null, null)
+
+                // Code for logout here
+                logoutDialog.dismiss()
+            }
+
+            logoutDialog.show()
+
+
         }
 
 
