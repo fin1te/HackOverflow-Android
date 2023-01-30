@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -47,6 +48,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+    implementation platform('com.google.firebase:firebase-bom:31.2.0')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -64,4 +67,8 @@ dependencies {
     implementation 'io.github.sangcomz:StickyTimeLine:1.0.0'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'com.airbnb.android:lottie:5.2.0'
+
+
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }
