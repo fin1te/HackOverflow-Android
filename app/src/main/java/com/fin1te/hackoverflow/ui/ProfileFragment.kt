@@ -17,9 +17,18 @@ import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.databinding.FragmentProfileBinding
+import com.fin1te.hackoverflow.model.Member
+import com.fin1te.hackoverflow.model.Team
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.TaskCompletionSource
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 
@@ -28,6 +37,21 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val RC_SIGN_IN = 9001
+    private var emailFound = false
+
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestProfile()
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,14 +87,6 @@ class ProfileFragment : Fragment() {
             initializePics(binding.profileImage, binding.picTeammate1, binding.picTeammate2, binding.picTeammate3)
         }
 
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .requestProfile()
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .build()
-
-        val googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         // Sign in with Google
         binding.googleSignIn.setOnClickListener {
@@ -123,13 +139,8 @@ class ProfileFragment : Fragment() {
                 // Code for logout here
                 logoutDialog.dismiss()
             }
-
             logoutDialog.show()
-
-
         }
-
-
     }
 
     @Deprecated("Deprecated in Java")
@@ -142,27 +153,102 @@ class ProfileFragment : Fragment() {
                 if (account != null) {
                     val email = account.email
                     val name = account.displayName
-                    val avatarURL =
-                        if (account.photoUrl != null) account.photoUrl.toString().replace("s96-c", "s350-c") else ""
-                    if (avatarURL.isNotEmpty()) {
-                        Glide.with(requireContext()).load(avatarURL).into(binding.profileImage)
+
+                    verifyUserInDatabase(email!!) { result ->
+                        if (!result) {
+                            Toast.makeText(requireContext(), "Email not found", Toast.LENGTH_SHORT).show()
+                                // Sign out from Google and clear shared preferences
+                            val sharedPref = requireActivity().getSharedPreferences("signInData", Context.MODE_PRIVATE)
+                            googleSignInClient.signOut()
+                            binding.googleSignInText.text = "Sign in with Google"
+                            val editor = sharedPref.edit()
+                            editor.clear()
+                            editor.apply()
+                            initializeNames(binding.user1name, null, null, null)
+                            initializePics(binding.profileImage, null, null, null)
+                            return@verifyUserInDatabase
+                        } else {
+                                // Do something when email is found
+                            val avatarURL =
+                                if (account.photoUrl != null) account.photoUrl.toString().replace("s96-c", "s350-c") else ""
+                            if (avatarURL.isNotEmpty()) {
+                                Glide.with(requireContext()).load(avatarURL).into(binding.profileImage)
+                            }
+                            binding.user1name.text = name
+                            // Do something with the user's email and name
+                            val sharedPref =
+                                requireActivity().getSharedPreferences("signInData", Context.MODE_PRIVATE)
+                            val editor = sharedPref.edit()
+                            editor.putString("email", email)
+                            editor.putString("name", name)
+                            editor.putString("avatarURL", avatarURL)
+                            editor.apply()
+                            binding.googleSignInText.text = "Signed In"
+                            Toast.makeText(requireContext(), "Signed In", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    binding.user1name.text = name
-                    // Do something with the user's email and name
-                    val sharedPref =
-                        requireActivity().getSharedPreferences("signInData", Context.MODE_PRIVATE)
-                    val editor = sharedPref.edit()
-                    editor.putString("email", email)
-                    editor.putString("name", name)
-                    editor.putString("avatarURL", avatarURL)
-                    editor.apply()
-                    binding.googleSignInText.text = "Signed In"
-                    Toast.makeText(requireContext(), "Signed In", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: ApiException) {
                 // Handle the error
             }
         }
+    }
+
+    private fun verifyUserInDatabase(email: String, callback: (Boolean) -> Unit) {
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("users")
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                dataSnapshot.children.forEach { categorySnapshot ->
+                    categorySnapshot.children.forEach { teamSnapshot ->
+                        teamSnapshot.children.forEach { memberSnapshot ->
+                            if (memberSnapshot.child("email").value == email) {
+                                emailFound = true
+                                Log.d("checkFirebase", "$emailFound : Email Found")
+                                val teamName = teamSnapshot.key
+                                val category = categorySnapshot.key
+                                val name = memberSnapshot.child("name").value as String
+                                val avUrl = memberSnapshot.child("avUrl").value as String
+                                val id = memberSnapshot.child("id").value as String
+                                val phone = memberSnapshot.child("phone").value as String
+
+                                val team = Team(
+                                    teamName!!,
+                                    category!!,
+                                    mutableListOf(
+                                        Member(name, email, avUrl, id, phone)
+                                    )
+                                )
+
+                                // Fetch other team members
+                                teamSnapshot.children.forEach { otherMemberSnapshot ->
+                                    if (otherMemberSnapshot.key != memberSnapshot.key) {
+                                        val otherName = otherMemberSnapshot.child("name").value as String
+                                        val otherEmail = otherMemberSnapshot.child("email").value as String
+                                        val otherAvUrl = otherMemberSnapshot.child("avUrl").value as String
+                                        val otherId = otherMemberSnapshot.child("id").value as String
+                                        val otherPhone = otherMemberSnapshot.child("phone").value as String
+
+                                        team.addMember(
+                                            Member(otherName, otherEmail, otherAvUrl, otherId, otherPhone)
+                                        )
+                                    }
+                                }
+                                Log.d("checkFirebase", "$team")
+                                // Do something with the team
+                                // ...
+                            }
+                        }
+                    }
+                }
+                callback(emailFound)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error
+            }
+        })
     }
 
 
