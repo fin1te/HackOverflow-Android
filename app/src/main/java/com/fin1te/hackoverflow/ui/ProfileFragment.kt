@@ -73,12 +73,7 @@ class ProfileFragment : Fragment() {
         val gson = Gson()
 
         initializeNames(binding.user1name, binding.user2name, binding.user3name, binding.user4name)
-        initializePics(
-            binding.profileImage,
-            binding.picTeammate1,
-            binding.picTeammate2,
-            binding.picTeammate3
-        )
+        initializePics(binding.profileImage, binding.picTeammate1, binding.picTeammate2, binding.picTeammate3)
         binding.googleSignInText.text = getString(R.string.sign_in_with_google)
 
         if (!teamJson.isNullOrEmpty()) {
@@ -303,26 +298,35 @@ class ProfileFragment : Fragment() {
             when (i) {
                 0 -> {
                     binding.user1name.text = teamMembers[i].name
-                    Glide.with(requireContext()).load(teamMembers[i].avUrl)
-                        .into(binding.profileImage)
+                    if (teamMembers[i].avUrl.isNotEmpty()) {
+                        Glide.with(requireContext()).load(teamMembers[i].avUrl)
+                            .into(binding.profileImage)
+                    }
+
                 }
 
                 1 -> {
                     binding.user2name.text = teamMembers[i].name.split(" ").first()
-                    Glide.with(requireContext()).load(teamMembers[i].avUrl)
-                        .into(binding.picTeammate1)
+                    if(teamMembers[i].avUrl.isNotEmpty()) {
+                        Glide.with(requireContext()).load(teamMembers[i].avUrl)
+                            .into(binding.picTeammate1)
+                    }
                 }
 
                 2 -> {
                     binding.user3name.text = teamMembers[i].name.split(" ").first()
-                    Glide.with(requireContext()).load(teamMembers[i].avUrl)
-                        .into(binding.picTeammate2)
+                    if(teamMembers[i].avUrl.isNotEmpty()) {
+                        Glide.with(requireContext()).load(teamMembers[i].avUrl)
+                            .into(binding.picTeammate2)
+                    }
                 }
 
                 3 -> {
                     binding.user4name.text = teamMembers[i].name.split(" ").first()
-                    Glide.with(requireContext()).load(teamMembers[i].avUrl)
-                        .into(binding.picTeammate3)
+                    if(teamMembers[i].avUrl.isNotEmpty()) {
+                        Glide.with(requireContext()).load(teamMembers[i].avUrl)
+                            .into(binding.picTeammate3)
+                    }
                 }
             }
         }
