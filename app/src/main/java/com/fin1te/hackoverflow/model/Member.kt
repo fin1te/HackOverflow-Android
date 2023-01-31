@@ -3,7 +3,7 @@ package com.fin1te.hackoverflow.model
 data class Member(
     val name: String,
     val email: String,
-    val avUrl: String,
+    var avUrl: String,
     val id: String,
     val phone: String
 )

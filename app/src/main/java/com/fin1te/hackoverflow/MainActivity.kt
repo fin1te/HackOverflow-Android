@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                             )
                         )
                     }
-
                     dialog.show()
                 }
 
@@ -108,6 +107,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 // Handle error
+                Log.d("checkUpdate", "$error")
             }
         })
     }
