@@ -48,8 +48,8 @@ class HomeFragment : Fragment() {
 
             pagerAdapters = TimelinePagerAdapters(childFragmentManager)
 
-            pagerAdapters.addFragment(TlOfflineFragment(),"Offline")
-            pagerAdapters.addFragment(TlOnlineFragment(),"Online")
+            pagerAdapters.addFragment(TlOfflineFragment(), "Offline")
+            pagerAdapters.addFragment(TlOnlineFragment(), "Online")
 
             pViewPager.adapter = pagerAdapters
 
@@ -62,41 +62,41 @@ class HomeFragment : Fragment() {
     }
 
 
-
     private fun startCountDown() {
         val targetDate = Calendar.getInstance().apply {
             set(2023, Calendar.MARCH, 16, 0, 0, 0)
         }.time
 
         countDownTimer?.cancel()
-        countDownTimer = object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
-                val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 24
-                val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
-                val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
-                //Do whatever you want with the time left
-                //for example updating a text view
-                binding.apply {
-                    daysCircular.progress = days.toFloat()
-                    hoursCircular.progress = hours.toFloat()
-                    minutesCircular.progress = minutes.toFloat()
-                    secondsCircular.progress = seconds.toFloat()
-                    daysCircular.setText("$days")
-                    hoursCircular.setText("$hours")
-                    minutesCircular.setText("$minutes")
-                    secondsCircular.setText("$seconds")
-                    daysCircular.setClockwise(true)
-                    hoursCircular.setClockwise(true)
-                    minutesCircular.setClockwise(true)
-                    secondsCircular.setClockwise(true)
+        countDownTimer =
+            object : CountDownTimer(targetDate.time - System.currentTimeMillis(), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
+                    val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 24
+                    val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
+                    val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
+                    //Do whatever you want with the time left
+                    //for example updating a text view
+                    binding.apply {
+                        daysCircular.progress = days.toFloat()
+                        hoursCircular.progress = hours.toFloat()
+                        minutesCircular.progress = minutes.toFloat()
+                        secondsCircular.progress = seconds.toFloat()
+                        daysCircular.setText("$days")
+                        hoursCircular.setText("$hours")
+                        minutesCircular.setText("$minutes")
+                        secondsCircular.setText("$seconds")
+                        daysCircular.setClockwise(true)
+                        hoursCircular.setClockwise(true)
+                        minutesCircular.setClockwise(true)
+                        secondsCircular.setClockwise(true)
+                    }
                 }
-            }
 
-            override fun onFinish() {
-                //Do whatever you want when the countdown finishes
-            }
-        }.start()
+                override fun onFinish() {
+                    //Do whatever you want when the countdown finishes
+                }
+            }.start()
     }
 
     override fun onDestroy() {

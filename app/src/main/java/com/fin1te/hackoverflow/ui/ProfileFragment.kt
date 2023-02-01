@@ -73,7 +73,12 @@ class ProfileFragment : Fragment() {
         val gson = Gson()
 
         initializeNames(binding.user1name, binding.user2name, binding.user3name, binding.user4name)
-        initializePics(binding.profileImage, binding.picTeammate1, binding.picTeammate2, binding.picTeammate3)
+        initializePics(
+            binding.profileImage,
+            binding.picTeammate1,
+            binding.picTeammate2,
+            binding.picTeammate3
+        )
         binding.googleSignInText.text = getString(R.string.sign_in_with_google)
 
         if (!teamJson.isNullOrEmpty()) {
@@ -219,7 +224,6 @@ class ProfileFragment : Fragment() {
                                             // TODO LATER : fetch it from Firebase after the avUrl gets updated there
 
 
-
                                             // Fetch other team members
                                             teamSnapshot.children.forEach { otherMemberSnapshot ->
                                                 if (otherMemberSnapshot.key != memberSnapshot.key) {
@@ -307,7 +311,7 @@ class ProfileFragment : Fragment() {
 
                 1 -> {
                     binding.user2name.text = teamMembers[i].name.split(" ").first()
-                    if(teamMembers[i].avUrl.isNotEmpty()) {
+                    if (teamMembers[i].avUrl.isNotEmpty()) {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate1)
                     }
@@ -315,7 +319,7 @@ class ProfileFragment : Fragment() {
 
                 2 -> {
                     binding.user3name.text = teamMembers[i].name.split(" ").first()
-                    if(teamMembers[i].avUrl.isNotEmpty()) {
+                    if (teamMembers[i].avUrl.isNotEmpty()) {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate2)
                     }
@@ -323,7 +327,7 @@ class ProfileFragment : Fragment() {
 
                 3 -> {
                     binding.user4name.text = teamMembers[i].name.split(" ").first()
-                    if(teamMembers[i].avUrl.isNotEmpty()) {
+                    if (teamMembers[i].avUrl.isNotEmpty()) {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate3)
                     }
