@@ -8,8 +8,8 @@
     tools:context=".ui.AboutFragment">
 
     <ScrollView
-        android:layout_width="392dp"
-        android:layout_height="680dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,107 +23,105 @@
             android:orientation="vertical">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/countDownTimerCard"
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="8dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/fira_code_semibold"
+                android:text="About Us"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/drac_dark"
-                app:cardCornerRadius="20dp">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/fira_code_semibold"
-                    android:text="About Us"
-                    android:textAlignment="center"
-                    android:textColor="@color/drac_purple"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
-
-
-            </androidx.cardview.widget.CardView>
+                android:textAlignment="center"
+                android:textColor="@color/drac_purple"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/about_us" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/collegecardview"
-                android:layout_width="381dp"
-                android:layout_height="476dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="8dp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/drac_dark"
                 app:cardCornerRadius="20dp">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/fira_code_semibold"
-                    android:text="About College"
-                    android:textAlignment="center"
-                    android:textColor="@color/drac_purple"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
+                    android:orientation="vertical">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/fira_code_semibold"
+                        android:text="About College"
+                        android:textAlignment="center"
+                        android:textColor="@color/drac_purple"
+                        android:textSize="20sp"
+                        tools:ignore="HardcodedText" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="346dp"
-                    android:layout_height="397dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginRight="30dp"
-                    android:justificationMode="inter_word"
-                    android:text="@string/aboutCollege"
-                    android:textColor="@color/drac_white"
-                    android:textSize="16sp"
-                    app:fontFamily="@font/fira_code"
-                    tools:ignore="HardcodedText" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginVertical="10dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/aboutCollege"
+                        android:textColor="@color/drac_white"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/fira_code" />
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/Abouthackoverflow"
-                android:layout_width="383dp"
-                android:layout_height="366dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/drac_dark"
                 app:cardCornerRadius="20dp">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/fira_code_semibold"
-                    android:text="About Hackoverflow"
-                    android:textAlignment="center"
-                    android:textColor="@color/drac_purple"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
+                    android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="346dp"
-                    android:layout_height="397dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginTop="75dp"
-                    android:layout_marginRight="17dp"
-                    android:justificationMode="inter_word"
-                    android:text="@string/aboutHackOverflow"
-                    android:textColor="@color/drac_white"
-                    android:textSize="16sp"
-                    app:fontFamily="@font/fira_code"
-                    tools:ignore="HardcodedText" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/fira_code_semibold"
+                        android:text="About HackOverflow"
+                        android:textAlignment="center"
+                        android:textColor="@color/drac_purple"
+                        android:textSize="20sp"
+                        tools:ignore="HardcodedText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginVertical="10dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/aboutHackOverflow"
+                        android:textColor="@color/drac_white"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/fira_code" />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
