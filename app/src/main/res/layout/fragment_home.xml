@@ -61,7 +61,7 @@
                             android:fontFamily="@font/fira_code_semibold"
                             android:text="Hackathon Starts In"
                             android:textAlignment="center"
-                            android:textColor="@color/drac_purple"
+                            android:textColor="@color/drac_white"
                             android:textSize="20sp"
                             tools:ignore="HardcodedText" />
 
@@ -84,11 +84,11 @@
                                 app:backgroundWidth="2"
                                 app:isClockwise="true"
                                 app:maxValue="60"
-                                app:progressBackgroundColor="#EEEEEE"
-                                app:progressColor="@color/drac_purple"
-                                app:progressTextColor="#eee"
+                                app:progressBackgroundColor="@color/drac_gray"
+                                app:progressColor="#FFB5A7"
+                                app:progressTextColor="#FFB5A7"
                                 app:startingPoint="bottom"
-                                app:strokeWidthDimension="3"
+                                app:strokeWidthDimension="4"
                                 app:textSize="18sp" />
 
                             <com.view.circulartimerview.CircularTimerView
@@ -100,11 +100,11 @@
                                 app:backgroundWidth="2"
                                 app:isClockwise="true"
                                 app:maxValue="24"
-                                app:progressBackgroundColor="#EEEEEE"
-                                app:progressColor="@color/drac_purple"
-                                app:progressTextColor="#eee"
+                                app:progressBackgroundColor="@color/drac_gray"
+                                app:progressColor="#FFFFA8"
+                                app:progressTextColor="#FFFFA8"
                                 app:startingPoint="bottom"
-                                app:strokeWidthDimension="3"
+                                app:strokeWidthDimension="4"
                                 app:textSize="18sp" />
 
                             <com.view.circulartimerview.CircularTimerView
@@ -116,11 +116,11 @@
                                 app:backgroundWidth="2"
                                 app:isClockwise="true"
                                 app:maxValue="60"
-                                app:progressBackgroundColor="#EEEEEE"
-                                app:progressColor="@color/drac_purple"
-                                app:progressTextColor="#eee"
+                                app:progressBackgroundColor="@color/drac_gray"
+                                app:progressColor="#A9E4FF"
+                                app:progressTextColor="#A9E4FF"
                                 app:startingPoint="bottom"
-                                app:strokeWidthDimension="3"
+                                app:strokeWidthDimension="4"
                                 app:textSize="18sp" />
 
                             <com.view.circulartimerview.CircularTimerView
@@ -132,11 +132,11 @@
                                 app:backgroundWidth="2"
                                 app:isClockwise="true"
                                 app:maxValue="60"
-                                app:progressBackgroundColor="#EEEEEE"
-                                app:progressColor="@color/drac_purple"
-                                app:progressTextColor="#eee"
+                                app:progressBackgroundColor="@color/drac_gray"
+                                app:progressColor="#B0FFA9"
+                                app:progressTextColor="#B0FFA9"
                                 app:startingPoint="bottom"
-                                app:strokeWidthDimension="3"
+                                app:strokeWidthDimension="4"
                                 app:textSize="18sp" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -147,7 +147,7 @@
                                 android:fontFamily="@font/fira_code"
                                 android:text="Days"
                                 android:textAlignment="center"
-                                android:textColor="@color/drac_white"
+                                android:textColor="#FFB5A7"
                                 android:textSize="16sp"
                                 tools:ignore="HardcodedText" />
 
@@ -159,7 +159,7 @@
                                 android:fontFamily="@font/fira_code"
                                 android:text="Hours"
                                 android:textAlignment="center"
-                                android:textColor="@color/drac_white"
+                                android:textColor="#FFFFA8"
                                 android:textSize="16sp"
                                 tools:ignore="HardcodedText" />
 
@@ -171,7 +171,7 @@
                                 android:fontFamily="@font/fira_code"
                                 android:text="Minutes"
                                 android:textAlignment="center"
-                                android:textColor="@color/drac_white"
+                                android:textColor="#A9E4FF"
                                 android:textSize="16sp"
                                 tools:ignore="HardcodedText" />
 
@@ -183,7 +183,7 @@
                                 android:fontFamily="@font/fira_code"
                                 android:text="Seconds"
                                 android:textAlignment="center"
-                                android:textColor="@color/drac_white"
+                                android:textColor="#B0FFA9"
                                 android:textSize="16sp"
                                 tools:ignore="HardcodedText" />
                         </GridLayout>
@@ -213,7 +213,7 @@
                             android:fontFamily="@font/fira_code_semibold"
                             android:text="Timeline"
                             android:textAlignment="center"
-                            android:textColor="@color/drac_purple"
+                            android:textColor="@color/drac_white"
                             android:textSize="20sp"
                             tools:ignore="HardcodedText" />
 
