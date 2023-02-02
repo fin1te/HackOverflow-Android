@@ -16,6 +16,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.databinding.FragmentProfileBinding
@@ -69,7 +71,7 @@ class ProfileFragment : Fragment() {
         // Check if user is already signed in
         val teamPref = requireContext().getSharedPreferences("team_pref", Context.MODE_PRIVATE)
         val teamJson = teamPref.getString("team", "")
-        Log.d("checkTeamData", teamJson?.isEmpty().toString()) // true when no one signed in.
+        Log.d("isTeamsEmpty", teamJson?.isEmpty().toString()) // true when no one signed in.
         val gson = Gson()
 
         initializeNames(binding.user1name, binding.user2name, binding.user3name, binding.user4name)
@@ -112,6 +114,7 @@ class ProfileFragment : Fragment() {
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
+        // Logout
         binding.logoutBtn.setOnClickListener {
 
             if (!isSignedIn) {
@@ -161,6 +164,14 @@ class ProfileFragment : Fragment() {
                 logoutDialog.dismiss()
             }
             logoutDialog.show()
+        }
+
+        binding.profileImage.setOnClickListener {
+            if (isSignedIn) {
+                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment)
+            } else {
+                Toast.makeText(requireContext(), "Please Sign In", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
