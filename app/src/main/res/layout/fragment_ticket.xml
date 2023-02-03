@@ -85,7 +85,7 @@
                     tools:ignore="HardcodedText" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/category"
+                    android:id="@+id/userType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -142,6 +142,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
                     android:layout_gravity="center"
                     tools:ignore="ContentDescription,HardcodedText" />
 
@@ -169,6 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="2dp"
@@ -181,6 +184,7 @@
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/userId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="2dp"

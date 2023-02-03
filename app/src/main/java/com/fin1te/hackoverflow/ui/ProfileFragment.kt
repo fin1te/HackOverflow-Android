@@ -170,9 +170,20 @@ class ProfileFragment : Fragment() {
             logoutDialog.show()
         }
 
+        // User 1 Profile On Click
         binding.profileImage.setOnClickListener {
             if (isSignedIn) {
-                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment)
+                val teamPref = requireContext().getSharedPreferences("team_pref", Context.MODE_PRIVATE)
+                val teamJson = teamPref.getString("team", "")
+                val team = gson.fromJson(teamJson, Team::class.java)
+                val bundle = Bundle()
+                bundle.putString("name", team.members[0].name)
+                bundle.putString("email", team.members[0].email)
+                bundle.putString("avatarURL", team.members[0].avUrl)
+                bundle.putString("category", team.category)
+                bundle.putString("teamName", team.teamName)
+
+                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment, bundle)
             } else {
                 Toast.makeText(requireContext(), "Please Sign In", Toast.LENGTH_SHORT).show()
             }
