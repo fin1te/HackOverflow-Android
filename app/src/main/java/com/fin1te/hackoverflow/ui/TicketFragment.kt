@@ -2,21 +2,12 @@ package com.fin1te.hackoverflow.ui
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapShader
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.LinearGradient
-import android.graphics.Matrix
-import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffXfermode
-import android.graphics.Rect
-import android.graphics.RectF
 import android.graphics.Shader
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,11 +18,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
-import com.fin1te.hackoverflow.MainActivity
 import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.databinding.FragmentTicketBinding
 import com.google.zxing.BarcodeFormat
@@ -39,8 +26,6 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
 import java.util.Random
 import kotlin.math.abs
 
@@ -48,6 +33,7 @@ class TicketFragment : Fragment() {
 
     private var _binding: FragmentTicketBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +48,6 @@ class TicketFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setTextGradient()
-
         // fetch data from bundle and set it to the views
         val bundle = arguments
         if (bundle != null) {
@@ -99,11 +84,17 @@ class TicketFragment : Fragment() {
 
         binding.userId.text = "ID: $userId"
 
-//        initializeOnClickListeners()
+        initializeOnClickListeners()
+    }
 
-
+    private fun initializeOnClickListeners() {
         binding.shareAll.setOnClickListener {
+//            binding.logoPillai.visibility = View.VISIBLE
+
             val cardView = binding.ticketCard
+
+            Log.d("TicketFragment", "${binding.logoPillai.visibility}")
+
             val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
             cardView.draw(canvas)
@@ -111,13 +102,9 @@ class TicketFragment : Fragment() {
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
-            if (file.exists()) {
-                file.delete()
-                Log.d("TicketFragment", "file deleted")
-            }
+            // get current unix timestamp in string format
 
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
             val uri: Uri = Uri.parse(path)
 
             val intent = Intent(Intent.ACTION_SEND)
@@ -135,13 +122,7 @@ class TicketFragment : Fragment() {
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
-            if (file.exists()) {
-                file.delete()
-                Log.d("TicketFragment", "file deleted")
-            }
-
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
             val uri: Uri = Uri.parse(path)
 
             val intent = Intent(Intent.ACTION_SEND)
@@ -168,13 +149,7 @@ class TicketFragment : Fragment() {
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
-            if (file.exists()) {
-                file.delete()
-                Log.d("TicketFragment", "file deleted")
-            }
-
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
             val uri: Uri = Uri.parse(path)
 
             val intent = Intent(Intent.ACTION_SEND)
@@ -193,6 +168,7 @@ class TicketFragment : Fragment() {
         }
 
         binding.shareInstagram.setOnClickListener {
+
             val cardView = binding.ticketCard
             val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
@@ -201,13 +177,7 @@ class TicketFragment : Fragment() {
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
-            if (file.exists()) {
-                file.delete()
-                Log.d("TicketFragment", "file deleted")
-            }
-
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
             val uri: Uri = Uri.parse(path)
 
             val intent = Intent(Intent.ACTION_SEND)
@@ -235,14 +205,7 @@ class TicketFragment : Fragment() {
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
-            if (file.exists()) {
-                file.delete()
-                Log.d("TicketFragment", "file deleted")
-            }
-
-
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
             val uri: Uri = Uri.parse(path)
 
             val intent = Intent(Intent.ACTION_SEND)
@@ -261,9 +224,7 @@ class TicketFragment : Fragment() {
                 Toast.makeText(requireContext(), "LinkedIn is not installed!", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
-
 
     private fun setTextGradient() {
         textGradient(binding.hackoverflowTitle, "#9580FF", "#FF80BF")
@@ -316,6 +277,8 @@ class TicketFragment : Fragment() {
             e.printStackTrace()
         }
     }
+
+
 
 
     override fun onDestroyView() {
