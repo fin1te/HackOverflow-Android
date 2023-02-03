@@ -17,4 +17,21 @@
     <color name="drac_white">#f8f8f2</color>
     <color name="drac_purple">#9580ff</color>
     <color name="drac_purple_low_opacity">#339580FF</color>
+
+    <color name="gr_yp_1">#FFFE80</color>
+    <color name="gr_yp_2">#FFBDA1</color>
+    <color name="gr_yp_3">#FF81BE</color>
+
+    <color name="gr_cg_1">#81B3FF</color>
+    <color name="gr_cg_2">#85D7C3</color>
+    <color name="gr_cg_3">#8AFF80</color>
+
+    <color name="gr_pp_1">#FF80BF</color>
+    <color name="gr_pp_2">#CA80DF</color>
+    <color name="gr_pp_3">#9580FF</color>
+
+    <color name="gr_pc_1">#80FFEA</color>
+    <color name="gr_pc_2">#8BBBF5</color>
+    <color name="gr_pc_3">#9580FF</color>
+
 </resources>
