@@ -16,13 +16,16 @@ import android.graphics.Shader
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
@@ -96,54 +99,10 @@ class TicketFragment : Fragment() {
 
         binding.userId.text = "ID: $userId"
 
+//        initializeOnClickListeners()
 
-//        binding.ticketCard.setOnClickListener {
-//
-//            val userAvatarCard = binding.userAvatarCard
-//            userAvatarCard.layoutParams.width = 200
-//            userAvatarCard.layoutParams.height = 200
-//            userAvatarCard.radius = 300f
-//
-//            val avatarBitmap = Bitmap.createBitmap(userAvatarCard.width, userAvatarCard.height, Bitmap.Config.ARGB_8888)
-//            val avatarCanvas = Canvas(avatarBitmap)
-//            userAvatarCard.draw(avatarCanvas)
-//
-//            // round the corners of the bitmap
-//            val roundedAvatarBitmap = getRoundedBitmap(avatarBitmap, 300f)
-//
-//            val cardView = binding.ticketCard
-//            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-//            val canvas = Canvas(bitmap)
-//            cardView.draw(canvas)
-//
-//            val outputStream = ByteArrayOutputStream()
-//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-//            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, roundedAvatarBitmap, "title", null)
-//            val uri: Uri = Uri.parse(path)
-//
-//            val intent = Intent(Intent.ACTION_SEND)
-//            intent.type = "image/*"
-//            intent.putExtra(Intent.EXTRA_STREAM, uri)
-//            startActivity(Intent.createChooser(intent, "Share"))
-//
-////            val cardView = binding.ticketCard
-////            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-////            val canvas = Canvas(bitmap)
-////            cardView.draw(canvas)
-////
-////            val outputStream = ByteArrayOutputStream()
-////            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-////            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "title", null)
-////            val uri: Uri = Uri.parse(path)
-////
-////            val intent = Intent(Intent.ACTION_SEND)
-////            intent.type = "image/*"
-////            intent.putExtra(Intent.EXTRA_STREAM, uri)
-////            startActivity(Intent.createChooser(intent, "Share"))
-//        }
 
-        binding.ticketCard.setOnClickListener {
-
+        binding.shareAll.setOnClickListener {
             val cardView = binding.ticketCard
             val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
@@ -151,7 +110,14 @@ class TicketFragment : Fragment() {
 
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "title", null)
+
+            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
+            if (file.exists()) {
+                file.delete()
+                Log.d("TicketFragment", "file deleted")
+            }
+
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
             val uri: Uri = Uri.parse(path)
 
             val intent = Intent(Intent.ACTION_SEND)
@@ -160,6 +126,141 @@ class TicketFragment : Fragment() {
             startActivity(Intent.createChooser(intent, "Share"))
         }
 
+        binding.shareWhatsapp.setOnClickListener {
+            val cardView = binding.ticketCard
+            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            cardView.draw(canvas)
+
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+
+            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
+            if (file.exists()) {
+                file.delete()
+                Log.d("TicketFragment", "file deleted")
+            }
+
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val uri: Uri = Uri.parse(path)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
+            intent.setPackage("com.whatsapp")
+            val shareIntent = Intent.createChooser(intent, "Share")
+            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+            if (componentName != null) {
+                startActivity(Intent.createChooser(intent, "Share"))
+            } else {
+                Toast.makeText(requireContext(), "WhatsApp is not installed!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.shareTwitter.setOnClickListener {
+            val cardView = binding.ticketCard
+            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            cardView.draw(canvas)
+
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+
+            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
+            if (file.exists()) {
+                file.delete()
+                Log.d("TicketFragment", "file deleted")
+            }
+
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val uri: Uri = Uri.parse(path)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
+            intent.setPackage("com.twitter.android")
+            val shareIntent = Intent.createChooser(intent, "Share")
+            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+            if (componentName != null) {
+                startActivity(Intent.createChooser(intent, "Share"))
+            } else {
+                Toast.makeText(requireContext(), "Twitter is not installed!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.shareInstagram.setOnClickListener {
+            val cardView = binding.ticketCard
+            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            cardView.draw(canvas)
+
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+
+            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
+            if (file.exists()) {
+                file.delete()
+                Log.d("TicketFragment", "file deleted")
+            }
+
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val uri: Uri = Uri.parse(path)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.setPackage("com.instagram.android")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            val shareIntent = Intent.createChooser(intent, "Share")
+            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+            if (componentName != null) {
+                startActivity(Intent.createChooser(intent, "Share"))
+            } else {
+                Toast.makeText(requireContext(), "Instagram is not installed!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.shareLinkedin.setOnClickListener {
+            val cardView = binding.ticketCard
+            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            cardView.draw(canvas)
+
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+
+            val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "${binding.userName.text} HackOverflow.png")
+            if (file.exists()) {
+                file.delete()
+                Log.d("TicketFragment", "file deleted")
+            }
+
+
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} HackOverflow", null)
+            val uri: Uri = Uri.parse(path)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
+            intent.setPackage("com.linkedin.android")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            val shareIntent = Intent.createChooser(intent, "Share")
+            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+            if (componentName != null) {
+                startActivity(Intent.createChooser(intent, "Share"))
+            } else {
+                Toast.makeText(requireContext(), "LinkedIn is not installed!", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
 
