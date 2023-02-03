@@ -26,21 +26,166 @@
         android:orientation="vertical"
         android:paddingBottom="90dp">
 
-        <TextView
-            android:id="@+id/ticket_title"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/google_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="Digital Ticket"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            android:layout_gravity="top|center"
+            app:cardElevation="0dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/drac_dark"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="12dp"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/hackoverflow_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="HackOverflow 1.0"
+                    android:textColor="@color/drac_purple"
+                    android:textSize="25sp"
+                    app:fontFamily="@font/fira_code_semibold"
+                    tools:ignore="HardcodedText" />
+                <!-- User Avatar -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="100sp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/z_ph_1"
+                        android:background="@drawable/gradient_yellow_pink_vertical"
+                        app:civ_border_color="#00FFFFFF"
+                        app:civ_border_width="4dp" />
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="Hugh Jackman"
+                    android:textColor="@color/drac_white"
+                    android:textSize="22sp"
+                    app:fontFamily="@font/fira_code_semibold"
+                    tools:ignore="HardcodedText" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/teamName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Team : Avengers"
+                    android:textColor="@color/drac_gray"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/fira_code"
+                    tools:ignore="HardcodedText" />
+
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/leftSemiCircle"
+                        android:layout_width="15dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/semi_circle_left"/>
+
+                    <View
+                        android:id="@+id/rightSemiCircle"
+                        android:layout_width="15dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/semi_circle_right"/>
+
+                    <View
+                        android:id="@+id/dashedLine"
+                        android:layout_width="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/dashed_line"/>
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/qr_code"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    tools:ignore="ContentDescription,HardcodedText" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ticket_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="Ticket ID: 123456789"
+                    android:textColor="@color/drac_purple"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/fira_code_semibold"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerColor="@color/drac_bg"
+                    app:dividerInsetEnd="5dp"
+                    app:dividerInsetStart="5dp"
+                    app:dividerThickness="2dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="2dp"
+                        android:text="Online"
+                        android:layout_marginStart="25dp"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/fira_code"
+                        android:textAlignment="center"
+                        android:textColor="@color/drac_gray"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="2dp"
+                        android:text="123456789"
+                        android:fontFamily="@font/fira_code"
+                        android:layout_marginEnd="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:textAlignment="center"
+                        android:textColor="@color/drac_gray"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
 
     </LinearLayout>
     </ScrollView>

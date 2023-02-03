@@ -321,7 +321,6 @@
                                 app:dividerInsetStart="15dp"
                                 app:dividerThickness="2dp" />
 
-                            <!-- yaha karna karan xD -->
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/logoutBtn"
                                 android:layout_width="match_parent"

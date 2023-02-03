@@ -3,6 +3,9 @@ package com.fin1te.hackoverflow.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
@@ -81,6 +84,7 @@ class ProfileFragment : Fragment() {
             binding.picTeammate2,
             binding.picTeammate3
         )
+        textGradient(binding.user1name, "#80FFEA", "#9580FF")
         binding.googleSignInText.text = getString(R.string.sign_in_with_google)
 
         if (!teamJson.isNullOrEmpty()) {
@@ -399,6 +403,17 @@ class ProfileFragment : Fragment() {
             p3?.text = livingBeings[Random().nextInt(livingBeings.size)]
             p4?.text = livingBeings[Random().nextInt(livingBeings.size)]
         }
+    }
+
+    private fun textGradient(textView: TextView, color1: String, color2: String) {
+        val paint = textView.paint
+        val height = paint.fontSpacing
+        val textShader = LinearGradient(0f, 0f, 0f, height,
+            intArrayOf(
+                Color.parseColor(color1),
+                Color.parseColor(color2)
+            ), null, Shader.TileMode.CLAMP)
+        textView.paint.shader = textShader
     }
 
     override fun onDestroyView() {
