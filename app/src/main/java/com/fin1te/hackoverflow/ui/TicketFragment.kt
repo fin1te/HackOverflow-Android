@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -104,6 +105,7 @@ class TicketFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -111,6 +113,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -262,6 +265,45 @@ class TicketFragment : Fragment() {
             }
         }
     }
+
+
+    private fun setTicketBackground() {
+        val random = (1..4).random()
+        when (random) {
+            1 -> {
+                binding.ticketCard.background = ContextCompat.getDrawable(requireContext(), R.drawable.gradient_yellow_pink)
+                binding.leftSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_yp_1)
+                binding.dashedLine.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_yp_2)
+                binding.rightSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_yp_3)
+            }
+            2 -> {
+                binding.ticketCard.background = ContextCompat.getDrawable(requireContext(), R.drawable.gradient_purple_cyan_horizontal)
+                binding.leftSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_pc_3)
+                binding.dashedLine.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_pc_2)
+                binding.rightSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_pc_1)
+            }
+            3 -> {
+                binding.ticketCard.background = ContextCompat.getDrawable(requireContext(), R.drawable.gradient_cyan_green)
+                binding.leftSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_cg_1)
+                binding.dashedLine.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_cg_2)
+                binding.rightSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_cg_3)
+            }
+            4 -> {
+                binding.ticketCard.background = ContextCompat.getDrawable(requireContext(), R.drawable.gradient_pink_purple)
+                binding.leftSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_pp_1)
+                binding.dashedLine.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_pp_2)
+                binding.rightSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.gr_pp_3)
+            }
+        }
+    }
+
+    private fun resetTicketBackground() {
+        binding.ticketCard.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.drac_bg))
+        binding.leftSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.drac_bg)
+        binding.dashedLine.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.drac_bg)
+        binding.rightSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.drac_bg)
+    }
+
 
     private fun setTextGradient() {
         textGradient(binding.hackoverflowTitle, "#9580FF", "#FF80BF")
