@@ -10,12 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
-import com.fin1te.hackoverflow.MainActivity
-import com.fin1te.hackoverflow.R
 import com.fin1te.hackoverflow.adapter.TimelinePagerAdapters
 import com.fin1te.hackoverflow.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayout

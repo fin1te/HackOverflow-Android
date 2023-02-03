@@ -27,7 +27,7 @@
         android:paddingBottom="90dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/google_sign_in"
+            android:id="@+id/ticketCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -55,22 +55,23 @@
                     app:fontFamily="@font/fira_code_semibold"
                     tools:ignore="HardcodedText" />
                 <!-- User Avatar -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|center"
-                    android:layout_marginTop="10dp"
-                    app:cardCornerRadius="100sp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/userAvatarCard"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="top|center"-->
+<!--                    android:layout_marginTop="10dp">-->
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:layout_gravity="center|top"
                         android:src="@drawable/z_ph_1"
                         android:background="@drawable/gradient_yellow_pink_vertical"
                         app:civ_border_color="#00FFFFFF"
                         app:civ_border_width="4dp" />
-                </androidx.cardview.widget.CardView>
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/userName"

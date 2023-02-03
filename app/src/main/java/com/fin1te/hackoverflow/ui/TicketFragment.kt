@@ -1,11 +1,22 @@
 package com.fin1te.hackoverflow.ui
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapShader
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
+import android.graphics.RectF
 import android.graphics.Shader
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +24,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
@@ -23,6 +35,9 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.Random
 import kotlin.math.abs
 
@@ -82,7 +97,72 @@ class TicketFragment : Fragment() {
         binding.userId.text = "ID: $userId"
 
 
+//        binding.ticketCard.setOnClickListener {
+//
+//            val userAvatarCard = binding.userAvatarCard
+//            userAvatarCard.layoutParams.width = 200
+//            userAvatarCard.layoutParams.height = 200
+//            userAvatarCard.radius = 300f
+//
+//            val avatarBitmap = Bitmap.createBitmap(userAvatarCard.width, userAvatarCard.height, Bitmap.Config.ARGB_8888)
+//            val avatarCanvas = Canvas(avatarBitmap)
+//            userAvatarCard.draw(avatarCanvas)
+//
+//            // round the corners of the bitmap
+//            val roundedAvatarBitmap = getRoundedBitmap(avatarBitmap, 300f)
+//
+//            val cardView = binding.ticketCard
+//            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+//            val canvas = Canvas(bitmap)
+//            cardView.draw(canvas)
+//
+//            val outputStream = ByteArrayOutputStream()
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+//            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, roundedAvatarBitmap, "title", null)
+//            val uri: Uri = Uri.parse(path)
+//
+//            val intent = Intent(Intent.ACTION_SEND)
+//            intent.type = "image/*"
+//            intent.putExtra(Intent.EXTRA_STREAM, uri)
+//            startActivity(Intent.createChooser(intent, "Share"))
+//
+////            val cardView = binding.ticketCard
+////            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+////            val canvas = Canvas(bitmap)
+////            cardView.draw(canvas)
+////
+////            val outputStream = ByteArrayOutputStream()
+////            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+////            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "title", null)
+////            val uri: Uri = Uri.parse(path)
+////
+////            val intent = Intent(Intent.ACTION_SEND)
+////            intent.type = "image/*"
+////            intent.putExtra(Intent.EXTRA_STREAM, uri)
+////            startActivity(Intent.createChooser(intent, "Share"))
+//        }
+
+        binding.ticketCard.setOnClickListener {
+
+            val cardView = binding.ticketCard
+            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            cardView.draw(canvas)
+
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "title", null)
+            val uri: Uri = Uri.parse(path)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            startActivity(Intent.createChooser(intent, "Share"))
+        }
+
+
     }
+
 
     private fun setTextGradient() {
         textGradient(binding.hackoverflowTitle, "#9580FF", "#FF80BF")
