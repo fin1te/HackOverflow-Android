@@ -1,6 +1,9 @@
 package com.fin1te.hackoverflow.ui
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -8,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.fin1te.hackoverflow.MainActivity
@@ -44,6 +48,9 @@ class HomeFragment : Fragment() {
 
         startCountDown() // Starts the countdown timer
 
+        textGradient(binding.timelineTitle, "#FFFF80", "#FF80BF")
+        textGradient(binding.countDownTimerTitle, "#80FFEA", "#9580FF")
+
         binding.apply {
 
             this@HomeFragment.pViewPager = myPagerView
@@ -57,6 +64,10 @@ class HomeFragment : Fragment() {
             pViewPager.adapter = pagerAdapters
 
             pTabs.setupWithViewPager(pViewPager)
+
+
+
+
             // Tab Icons
 //            pTabs.getTabAt(0)!!.setIcon(R.drawable.offlineIcon)
 //            pTabs.getTabAt(1)!!.setIcon(R.drawable.onlineIcon)
@@ -100,6 +111,17 @@ class HomeFragment : Fragment() {
                     //Do whatever you want when the countdown finishes
                 }
             }.start()
+    }
+
+    private fun textGradient(textView: TextView, color1: String, color2: String) {
+        val paint = textView.paint
+        val height = paint.fontSpacing
+        val textShader = LinearGradient(0f, 0f, 0f, height,
+            intArrayOf(
+                Color.parseColor(color1),
+                Color.parseColor(color2)
+            ), null, Shader.TileMode.CLAMP)
+        textView.paint.shader = textShader
     }
 
     override fun onDestroy() {
