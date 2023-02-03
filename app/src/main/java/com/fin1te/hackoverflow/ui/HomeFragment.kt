@@ -33,8 +33,7 @@ class HomeFragment : Fragment() {
     private var countDownTimer: CountDownTimer? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         _binding = fragmentBinding
@@ -48,8 +47,8 @@ class HomeFragment : Fragment() {
 
         startCountDown() // Starts the countdown timer
 
-        textGradient(binding.timelineTitle, "#FFFF80", "#FF80BF")
         textGradient(binding.countDownTimerTitle, "#80FFEA", "#9580FF")
+        textGradient(binding.timelineTitle, "#FFFF80", "#FF80BF")
 
         binding.apply {
 
@@ -64,8 +63,6 @@ class HomeFragment : Fragment() {
             pViewPager.adapter = pagerAdapters
 
             pTabs.setupWithViewPager(pViewPager)
-
-
 
 
             // Tab Icons
@@ -116,11 +113,11 @@ class HomeFragment : Fragment() {
     private fun textGradient(textView: TextView, color1: String, color2: String) {
         val paint = textView.paint
         val height = paint.fontSpacing
-        val textShader = LinearGradient(0f, 0f, 0f, height,
-            intArrayOf(
-                Color.parseColor(color1),
-                Color.parseColor(color2)
-            ), null, Shader.TileMode.CLAMP)
+        val textShader = LinearGradient(
+            0f, 0f, 0f, height, intArrayOf(
+                Color.parseColor(color1), Color.parseColor(color2)
+            ), null, Shader.TileMode.CLAMP
+        )
         textView.paint.shader = textShader
     }
 

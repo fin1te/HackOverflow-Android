@@ -23,6 +23,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
+import java.util.Random
 import kotlin.math.abs
 
 class TicketFragment : Fragment() {
@@ -47,10 +48,21 @@ class TicketFragment : Fragment() {
         // fetch data from bundle and set it to the views
         val bundle = arguments
         if (bundle != null) {
-            Glide.with(requireContext()).load(bundle.getString("avatarURL")).into(binding.profileImage)
             binding.userName.text = bundle.getString("name")
             binding.category.text = bundle.getString("category")
             binding.teamName.text = "Team: ${bundle.getString("teamName")}"
+        }
+
+        if (bundle?.getString("avatarURL").isNullOrEmpty()) {
+            val drawableArray = arrayOf(
+                R.drawable.z_ph_1, R.drawable.z_ph_2, R.drawable.z_ph_3,
+                R.drawable.z_ph_4, R.drawable.z_ph_5, R.drawable.z_ph_6,
+                R.drawable.z_ph_7, R.drawable.z_ph_8, R.drawable.z_ph_9, R.drawable.z_ph_10
+            )
+            binding.profileImage.setImageResource(drawableArray[Random().nextInt(10)])
+        } else {
+            Glide.with(requireContext()).load(bundle?.getString("avatarURL"))
+                .into(binding.profileImage)
         }
 
         val hash = bundle?.getString("email").hashCode()
@@ -58,10 +70,11 @@ class TicketFragment : Fragment() {
         generateQRCode(userId, binding.qrCode)
 
         binding.userId.text = bundle?.getString("userId")
-        if(bundle?.getString("category")?.lowercase()=="online"||bundle?.getString("category")?.lowercase()=="offline"){
+        if (bundle?.getString("category")?.lowercase() == "online" || bundle?.getString("category")
+                ?.lowercase() == "offline"
+        ) {
             binding.userType.text = "Participant"
-        }
-        else{
+        } else {
             binding.userType.text = "Organizing Team"
             binding.category.text = "Core Team"
         }
@@ -87,23 +100,34 @@ class TicketFragment : Fragment() {
     private fun textGradient(textView: TextView, color1: String, color2: String) {
         val paint = textView.paint
         val height = paint.fontSpacing
-        val textShader = LinearGradient(0f, 0f, 0f, height,
+        val textShader = LinearGradient(
+            0f, 0f, 0f, height,
             intArrayOf(
                 Color.parseColor(color1),
                 Color.parseColor(color2)
-            ), null, Shader.TileMode.CLAMP)
+            ), null, Shader.TileMode.CLAMP
+        )
         textView.paint.shader = textShader
     }
 
 
     private fun generateQRCode(number: String, imageView: ImageView) {
         try {
-            val bitMatrix: BitMatrix = MultiFormatWriter().encode(number,
-                BarcodeFormat.QR_CODE, 200, 200)
+            val bitMatrix: BitMatrix = MultiFormatWriter().encode(
+                number,
+                BarcodeFormat.QR_CODE, 200, 200
+            )
             val bitmap: Bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565)
             for (x in 0 until 200) {
                 for (y in 0 until 200) {
-                    bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.WHITE else ContextCompat.getColor(requireContext(), R.color.drac_dark))
+                    bitmap.setPixel(
+                        x,
+                        y,
+                        if (bitMatrix.get(x, y)) Color.WHITE else ContextCompat.getColor(
+                            requireContext(),
+                            R.color.drac_dark
+                        )
+                    )
                 }
             }
             imageView.setImageBitmap(bitmap)

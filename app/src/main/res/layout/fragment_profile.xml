@@ -126,7 +126,7 @@
                             android:id="@+id/user3card"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="0.66"
+                            android:layout_columnWeight="1"
                             android:layout_marginVertical="10dp"
                             android:orientation="vertical">
                             <!-- User Avatar -->
