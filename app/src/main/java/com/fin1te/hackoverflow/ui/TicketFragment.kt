@@ -34,16 +34,17 @@ class TicketFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Purple Cyan
-//                textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
+        // textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
 
         // Pink Purple
-         textGradient(binding.hackoverflowTitle, "#9580FF", "#FF80BF")
-
+        textGradient(binding.hackoverflowTitle, "#9580FF", "#FF80BF")
+        textGradient(binding.userName, "#FFFF80", "#FF80BF")
+        textGradient(binding.category, "#8AFF80", "#81B3FF")
         // Yellow Orange
         // textGradient(binding.hackoverflowTitle, "#FFFF80", "#FF80BF")
 
 
-        textGradient(binding.userName, "#FFFF80", "#FF80BF")
+
     }
 
 

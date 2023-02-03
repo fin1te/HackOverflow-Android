@@ -51,7 +51,7 @@
                     android:layout_marginTop="5dp"
                     android:text="HackOverflow 1.0"
                     android:textColor="@color/drac_purple"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     app:fontFamily="@font/fira_code_semibold"
                     tools:ignore="HardcodedText" />
                 <!-- User Avatar -->
@@ -80,16 +80,29 @@
                     android:layout_marginTop="5dp"
                     android:text="Hugh Jackman"
                     android:textColor="@color/drac_white"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     app:fontFamily="@font/fira_code_semibold"
                     tools:ignore="HardcodedText" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:text="Participant"
+                    android:textColor="@color/drac_gray"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/fira_code"
+                    tools:ignore="HardcodedText" />
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/teamName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Team : Avengers"
-                    android:textColor="@color/drac_gray"
+                    android:textColor="@color/drac_white"
                     android:textSize="16sp"
                     app:fontFamily="@font/fira_code"
                     tools:ignore="HardcodedText" />
@@ -133,15 +146,15 @@
                     tools:ignore="ContentDescription,HardcodedText" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/ticket_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="Ticket ID: 123456789"
-                    android:textColor="@color/drac_purple"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/fira_code_semibold"
+                    android:layout_marginVertical="20dp"
+                    android:text="Organized by \nDept. of Computer Engineering\nPHCET, Navi Mumbai"
+                    android:textAlignment="center"
+                    android:textColor="@color/drac_gray"
+                    android:textSize="13sp"
+                    app:fontFamily="@font/fira_code"
                     tools:ignore="HardcodedText" />
 
                 <com.google.android.material.divider.MaterialDivider

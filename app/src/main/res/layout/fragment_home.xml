@@ -226,10 +226,10 @@
                             android:layout_marginHorizontal="10dp"
                             android:backgroundTint="@color/drac_dark"
                             app:tabGravity="fill"
-                            app:tabIndicatorColor="@color/drac_purple"
+                            app:tabIndicatorColor="#FFB5A7"
                             app:tabMaxWidth="0dp"
                             app:tabMode="fixed"
-                            app:tabSelectedTextColor="@color/drac_purple"
+                            app:tabSelectedTextColor="#FFB5A7"
                             app:tabTextColor="@color/drac_gray" />
 
                         <androidx.viewpager.widget.ViewPager
