@@ -40,7 +40,7 @@
                         android:layout_height="130dp"
                         android:background="@drawable/gradient_purple_cyan"
                         app:civ_border_color="#00FFFFFF"
-                        app:civ_border_width="3dp" />
+                        app:civ_border_width="4dp" />
                 </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.textview.MaterialTextView
@@ -85,6 +85,7 @@
                         android:paddingVertical="10dp">
 
                         <LinearLayout
+                            android:id="@+id/user2card"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"
@@ -122,9 +123,10 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/user3card"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="0.66"
+                            android:layout_columnWeight="1"
                             android:layout_marginVertical="10dp"
                             android:orientation="vertical">
                             <!-- User Avatar -->
@@ -159,6 +161,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/user4card"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_columnWeight="1"

@@ -29,6 +29,7 @@
 <!--                android:orientation="vertical">-->
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/noticeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -47,10 +48,10 @@
                     android:layout_marginHorizontal="10dp"
                     android:backgroundTint="@color/drac_dark"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/drac_purple"
+                    app:tabIndicatorColor="#81FFC8"
                     app:tabMaxWidth="0dp"
                     app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/drac_purple"
+                    app:tabSelectedTextColor="#81FFC8"
                     app:tabTextColor="@color/drac_gray" />
 
                 <androidx.viewpager.widget.ViewPager

@@ -84,6 +84,9 @@ class ProfileFragment : Fragment() {
             binding.picTeammate2,
             binding.picTeammate3
         )
+        binding.user3card.visibility = View.GONE
+        binding.user4card.visibility = View.GONE
+
         textGradient(binding.user1name, "#80FFEA", "#9580FF")
         binding.googleSignInText.text = getString(R.string.sign_in_with_google)
 
@@ -93,7 +96,11 @@ class ProfileFragment : Fragment() {
             val team = gson.fromJson(teamJson, Team::class.java)
             binding.googleSignInText.text = getString(R.string.signed_in)
             updateUIwithTeam(team)
+        } else {
+            binding.user3card.visibility = View.VISIBLE
+            binding.user4card.visibility = View.VISIBLE
         }
+
 
         // Sign in with Google
         binding.googleSignIn.setOnClickListener {
@@ -145,6 +152,12 @@ class ProfileFragment : Fragment() {
                 binding.googleSignInText.text = getString(R.string.sign_in_with_google)
                 Toast.makeText(requireContext(), "Signed Out", Toast.LENGTH_SHORT).show()
 
+                if (binding.user3card.visibility == View.GONE) {
+                    binding.user3card.visibility = View.VISIBLE
+                }
+                if (binding.user4card.visibility == View.GONE) {
+                    binding.user4card.visibility = View.VISIBLE
+                }
 
                 // Team data is cleared from shared preferences
                 val teamPref = context?.getSharedPreferences("team_pref", Context.MODE_PRIVATE)
@@ -165,18 +178,93 @@ class ProfileFragment : Fragment() {
                     binding.picTeammate3
                 )
 
+
+
                 logoutDialog.dismiss()
             }
             logoutDialog.show()
         }
 
+        // User 1 Profile On Click
         binding.profileImage.setOnClickListener {
             if (isSignedIn) {
-                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment)
+                val teamPref =
+                    requireContext().getSharedPreferences("team_pref", Context.MODE_PRIVATE)
+                val teamJson = teamPref.getString("team", "")
+                val team = gson.fromJson(teamJson, Team::class.java)
+                val bundle = Bundle()
+                bundle.putString("name", team.members[0].name)
+                bundle.putString("email", team.members[0].email)
+                bundle.putString("avatarURL", team.members[0].avUrl)
+                bundle.putString("category", team.category)
+                bundle.putString("teamName", team.teamName)
+
+                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment, bundle)
             } else {
                 Toast.makeText(requireContext(), "Please Sign In", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // User 2 Profile On Click
+        binding.user2card.setOnClickListener {
+            if (isSignedIn) {
+                val teamPref =
+                    requireContext().getSharedPreferences("team_pref", Context.MODE_PRIVATE)
+                val teamJson = teamPref.getString("team", "")
+                val team = gson.fromJson(teamJson, Team::class.java)
+                val bundle = Bundle()
+                bundle.putString("name", team.members[1].name)
+                bundle.putString("email", team.members[1].email)
+                bundle.putString("avatarURL", team.members[1].avUrl)
+                bundle.putString("category", team.category)
+                bundle.putString("teamName", team.teamName)
+
+                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment, bundle)
+            } else {
+                Toast.makeText(requireContext(), "Please Sign In", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // User 3 Profile On Click
+        binding.user3card.setOnClickListener {
+            if (isSignedIn) {
+                val teamPref =
+                    requireContext().getSharedPreferences("team_pref", Context.MODE_PRIVATE)
+                val teamJson = teamPref.getString("team", "")
+                val team = gson.fromJson(teamJson, Team::class.java)
+                val bundle = Bundle()
+                bundle.putString("name", team.members[2].name)
+                bundle.putString("email", team.members[2].email)
+                bundle.putString("avatarURL", team.members[2].avUrl)
+                bundle.putString("category", team.category)
+                bundle.putString("teamName", team.teamName)
+
+                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment, bundle)
+            } else {
+                Toast.makeText(requireContext(), "Please Sign In", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // User 4 Profile On Click
+        binding.user4card.setOnClickListener {
+            if (isSignedIn) {
+                val teamPref =
+                    requireContext().getSharedPreferences("team_pref", Context.MODE_PRIVATE)
+                val teamJson = teamPref.getString("team", "")
+                val team = gson.fromJson(teamJson, Team::class.java)
+                val bundle = Bundle()
+                bundle.putString("name", team.members[3].name)
+                bundle.putString("email", team.members[3].email)
+                bundle.putString("avatarURL", team.members[3].avUrl)
+                bundle.putString("category", team.category)
+                bundle.putString("teamName", team.teamName)
+
+                findNavController().navigate(R.id.action_profileFragment_to_ticketFragment, bundle)
+            } else {
+                Toast.makeText(requireContext(), "Please Sign In", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     @Deprecated("Deprecated in Java")
@@ -294,7 +382,6 @@ class ProfileFragment : Fragment() {
                             } else {
                                 updateUIwithTeam(teamObj)
                             }
-
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -312,6 +399,9 @@ class ProfileFragment : Fragment() {
     // check how many members are in the team and update name & avatar
     private fun updateUIwithTeam(team: Team) {
 
+        binding.user3card.visibility = View.GONE
+        binding.user4card.visibility = View.GONE
+
         val teamMembers = team.members
         for (i in 0 until teamMembers.size) {
             when (i) {
@@ -321,7 +411,6 @@ class ProfileFragment : Fragment() {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.profileImage)
                     }
-
                 }
 
                 1 -> {
@@ -338,6 +427,7 @@ class ProfileFragment : Fragment() {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate2)
                     }
+                    binding.user3card.visibility = View.VISIBLE
                 }
 
                 3 -> {
@@ -346,10 +436,10 @@ class ProfileFragment : Fragment() {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate3)
                     }
+                    binding.user4card.visibility = View.VISIBLE
                 }
             }
         }
-
     }
 
     // check if internet is available or not and return true or false
@@ -408,11 +498,13 @@ class ProfileFragment : Fragment() {
     private fun textGradient(textView: TextView, color1: String, color2: String) {
         val paint = textView.paint
         val height = paint.fontSpacing
-        val textShader = LinearGradient(0f, 0f, 0f, height,
+        val textShader = LinearGradient(
+            0f, 0f, 0f, height,
             intArrayOf(
                 Color.parseColor(color1),
                 Color.parseColor(color2)
-            ), null, Shader.TileMode.CLAMP)
+            ), null, Shader.TileMode.CLAMP
+        )
         textView.paint.shader = textShader
     }
 

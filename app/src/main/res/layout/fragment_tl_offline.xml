@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:timeLineColor="@color/drac_purple"
-            app:timeLineDotColor="@color/drac_gray"
+            app:timeLineDotColor="@color/drac_dark"
             app:timeLineDotRadius="4dp"
             app:timeLineDotStrokeColor="#ffffff"
             app:timeLineDotStrokeSize="2dp"
