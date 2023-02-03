@@ -25,6 +25,13 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.io.ByteArrayOutputStream
 import java.util.Random
 import kotlin.math.abs
@@ -85,143 +92,173 @@ class TicketFragment : Fragment() {
         binding.userId.text = "ID: $userId"
 
         initializeOnClickListeners()
+
     }
 
+
+
     private fun initializeOnClickListeners() {
+
+
         binding.shareAll.setOnClickListener {
-//            binding.logoPillai.visibility = View.VISIBLE
+            CoroutineScope(Dispatchers.Main).launch {
+                val cardView = binding.ticketCard
+                binding.logoPillai.visibility = View.VISIBLE
+                delay(100)
 
-            val cardView = binding.ticketCard
+                val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                cardView.draw(canvas)
 
-            Log.d("TicketFragment", "${binding.logoPillai.visibility}")
+                binding.logoPillai.visibility = View.GONE
 
-            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            cardView.draw(canvas)
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
+                val uri: Uri = Uri.parse(path)
 
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-
-            // get current unix timestamp in string format
-
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
-            val uri: Uri = Uri.parse(path)
-
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            startActivity(Intent.createChooser(intent, "Share"))
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                startActivity(Intent.createChooser(intent, "Share"))
+            }
         }
 
         binding.shareWhatsapp.setOnClickListener {
-            val cardView = binding.ticketCard
-            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            cardView.draw(canvas)
+            CoroutineScope(Dispatchers.Main).launch {
+                val cardView = binding.ticketCard
+                binding.logoPillai.visibility = View.VISIBLE
+                delay(100)
 
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                cardView.draw(canvas)
 
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
-            val uri: Uri = Uri.parse(path)
+                binding.logoPillai.visibility = View.GONE
 
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
-            intent.setPackage("com.whatsapp")
-            val shareIntent = Intent.createChooser(intent, "Share")
-            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
+                val uri: Uri = Uri.parse(path)
 
-            if (componentName != null) {
-                startActivity(Intent.createChooser(intent, "Share"))
-            } else {
-                Toast.makeText(requireContext(), "WhatsApp is not installed!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
+                intent.setPackage("com.whatsapp")
+                val shareIntent = Intent.createChooser(intent, "Share")
+                val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+                if (componentName != null) {
+                    startActivity(Intent.createChooser(intent, "Share"))
+                } else {
+                    Toast.makeText(requireContext(), "WhatsApp is not installed!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         binding.shareTwitter.setOnClickListener {
-            val cardView = binding.ticketCard
-            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            cardView.draw(canvas)
+            CoroutineScope(Dispatchers.Main).launch {
+                val cardView = binding.ticketCard
+                binding.logoPillai.visibility = View.VISIBLE
+                delay(100)
 
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                cardView.draw(canvas)
 
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
-            val uri: Uri = Uri.parse(path)
+                binding.logoPillai.visibility = View.GONE
 
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
-            intent.setPackage("com.twitter.android")
-            val shareIntent = Intent.createChooser(intent, "Share")
-            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            if (componentName != null) {
-                startActivity(Intent.createChooser(intent, "Share"))
-            } else {
-                Toast.makeText(requireContext(), "Twitter is not installed!", Toast.LENGTH_SHORT).show()
+                val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
+                val uri: Uri = Uri.parse(path)
+
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
+                intent.setPackage("com.twitter.android")
+                val shareIntent = Intent.createChooser(intent, "Share")
+                val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+                if (componentName != null) {
+                    startActivity(Intent.createChooser(intent, "Share"))
+                } else {
+                    Toast.makeText(requireContext(), "Twitter is not installed!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         binding.shareInstagram.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                val cardView = binding.ticketCard
+                binding.logoPillai.visibility = View.VISIBLE
+                delay(100)
 
-            val cardView = binding.ticketCard
-            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            cardView.draw(canvas)
+                val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                cardView.draw(canvas)
 
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                binding.logoPillai.visibility = View.GONE
 
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
-            val uri: Uri = Uri.parse(path)
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            intent.setPackage("com.instagram.android")
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
+                val uri: Uri = Uri.parse(path)
 
-            val shareIntent = Intent.createChooser(intent, "Share")
-            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.setPackage("com.instagram.android")
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-            if (componentName != null) {
-                startActivity(Intent.createChooser(intent, "Share"))
-            } else {
-                Toast.makeText(requireContext(), "Instagram is not installed!", Toast.LENGTH_SHORT).show()
+                val shareIntent = Intent.createChooser(intent, "Share")
+                val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+                if (componentName != null) {
+                    startActivity(Intent.createChooser(intent, "Share"))
+                } else {
+                    Toast.makeText(requireContext(), "Instagram is not installed!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         binding.shareLinkedin.setOnClickListener {
-            val cardView = binding.ticketCard
-            val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            cardView.draw(canvas)
+            CoroutineScope(Dispatchers.Main).launch {
+                val cardView = binding.ticketCard
+                binding.logoPillai.visibility = View.VISIBLE
+                delay(100)
 
-            val outputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                cardView.draw(canvas)
 
-            val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
-            val uri: Uri = Uri.parse(path)
+                binding.logoPillai.visibility = View.GONE
 
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
-            intent.setPackage("com.linkedin.android")
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-            val shareIntent = Intent.createChooser(intent, "Share")
-            val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+                val path: String = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "${binding.userName.text} ${System.currentTimeMillis()}", null)
+                val uri: Uri = Uri.parse(path)
 
-            if (componentName != null) {
-                startActivity(Intent.createChooser(intent, "Share"))
-            } else {
-                Toast.makeText(requireContext(), "LinkedIn is not installed!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.putExtra(Intent.EXTRA_TEXT, "Hey, I'm participating in HackOverflow 1.0, a 3-day long national level hackathon at PHCET, Navi Mumbai!")
+                intent.setPackage("com.linkedin.android")
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+                val shareIntent = Intent.createChooser(intent, "Share")
+                val componentName = shareIntent.resolveActivity(requireContext().packageManager)
+
+                if (componentName != null) {
+                    startActivity(Intent.createChooser(intent, "Share"))
+                } else {
+                    Toast.makeText(requireContext(), "LinkedIn is not installed!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -277,6 +314,7 @@ class TicketFragment : Fragment() {
             e.printStackTrace()
         }
     }
+
 
 
 
