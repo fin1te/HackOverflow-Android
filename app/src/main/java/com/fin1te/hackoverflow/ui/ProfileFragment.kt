@@ -84,6 +84,9 @@ class ProfileFragment : Fragment() {
             binding.picTeammate2,
             binding.picTeammate3
         )
+        binding.user3card.visibility = View.GONE
+        binding.user4card.visibility = View.GONE
+
         textGradient(binding.user1name, "#80FFEA", "#9580FF")
         binding.googleSignInText.text = getString(R.string.sign_in_with_google)
 
@@ -93,7 +96,12 @@ class ProfileFragment : Fragment() {
             val team = gson.fromJson(teamJson, Team::class.java)
             binding.googleSignInText.text = getString(R.string.signed_in)
             updateUIwithTeam(team)
+        } else {
+            binding.user3card.visibility = View.VISIBLE
+            binding.user4card.visibility = View.VISIBLE
         }
+
+
 
         // Sign in with Google
         binding.googleSignIn.setOnClickListener {
@@ -145,6 +153,12 @@ class ProfileFragment : Fragment() {
                 binding.googleSignInText.text = getString(R.string.sign_in_with_google)
                 Toast.makeText(requireContext(), "Signed Out", Toast.LENGTH_SHORT).show()
 
+                if(binding.user3card.visibility == View.GONE) {
+                    binding.user3card.visibility = View.VISIBLE
+                }
+                if(binding.user4card.visibility == View.GONE) {
+                    binding.user4card.visibility = View.VISIBLE
+                }
 
                 // Team data is cleared from shared preferences
                 val teamPref = context?.getSharedPreferences("team_pref", Context.MODE_PRIVATE)
@@ -164,6 +178,8 @@ class ProfileFragment : Fragment() {
                     binding.picTeammate2,
                     binding.picTeammate3
                 )
+
+
 
                 logoutDialog.dismiss()
             }
@@ -323,6 +339,9 @@ class ProfileFragment : Fragment() {
     // check how many members are in the team and update name & avatar
     private fun updateUIwithTeam(team: Team) {
 
+        binding.user3card.visibility = View.GONE
+        binding.user4card.visibility = View.GONE
+
         val teamMembers = team.members
         for (i in 0 until teamMembers.size) {
             when (i) {
@@ -349,6 +368,7 @@ class ProfileFragment : Fragment() {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate2)
                     }
+                    binding.user3card.visibility = View.VISIBLE
                 }
 
                 3 -> {
@@ -357,6 +377,7 @@ class ProfileFragment : Fragment() {
                         Glide.with(requireContext()).load(teamMembers[i].avUrl)
                             .into(binding.picTeammate3)
                     }
+                    binding.user4card.visibility = View.VISIBLE
                 }
             }
         }
