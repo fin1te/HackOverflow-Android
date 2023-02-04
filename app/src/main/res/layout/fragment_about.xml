@@ -123,7 +123,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginHorizontal="17dp"
-                            android:layout_marginVertical="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
                             android:justificationMode="inter_word"
                             android:text="@string/hof_about_4"
                             android:textColor="#C8BEFF"
@@ -139,7 +140,6 @@
                             app:dividerThickness="2dp" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/logoutBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -147,7 +147,7 @@
                             android:layout_marginTop="5dp"
                             android:text="Download Brochure"
                             android:textAlignment="center"
-                            android:textColor="@color/drac_gray"
+                            android:textColor="@color/drac_purple"
                             android:textSize="16sp"
                             tools:ignore="HardcodedText" />
 
@@ -177,23 +177,98 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:fontFamily="@font/fira_code_semibold"
-                            android:text="PHCET"
+                            android:text="About College"
                             android:textAlignment="center"
                             android:textColor="@color/drac_purple"
                             android:textSize="24sp"
                             tools:ignore="HardcodedText" />
+
+                        <ImageView
+                            android:id="@+id/college_logo"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            tools:ignore="ContentDescription" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginHorizontal="17dp"
-                            android:layout_marginVertical="10dp"
+                            android:layout_marginVertical="5dp"
                             android:justificationMode="inter_word"
-                            android:text="@string/aboutCollege"
-                            android:textColor="@color/drac_white"
-                            android:textSize="14sp"
+                            android:text="@string/college_about_1"
+                            android:textColor="#C4FFBF"
+                            android:textSize="13sp"
                             app:fontFamily="@font/fira_code" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginVertical="5dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/college_about_2"
+                            android:textColor="#FFE7C5"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginVertical="5dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/college_about_3"
+                            android:textColor="#FFC0DF"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginVertical="5dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/college_about_4"
+                            android:textColor="#C8BEFF"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/college_about_5"
+                            android:textColor="@color/drac_white"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerColor="@color/drac_bg"
+                            app:dividerInsetEnd="15dp"
+                            app:dividerInsetStart="15dp"
+                            app:dividerThickness="2dp" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="View Details"
+                            android:textAlignment="center"
+                            android:textColor="@color/drac_purple"
+                            android:textSize="16sp"
+                            tools:ignore="HardcodedText" />
 
                     </LinearLayout>
 

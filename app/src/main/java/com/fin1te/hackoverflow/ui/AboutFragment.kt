@@ -31,20 +31,23 @@ class AboutFragment : Fragment() {
         textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
         textGradient(binding.phcetAboutTitle, "#FFFF80", "#FF80BF")
 
-        // set hof logo image as logo_hof_1, logo_hof_2, or logo_hof_3 randomly
-        val random = (1..3).random()
-        val hofLogo = when (random) {
-            1 -> "logo_hof_1"
-            2 -> "logo_hof_2"
-            else -> "logo_hof_3"
-        }
+        val hack_logo = mapOf(1 to "logo_hof_1", 2 to "logo_hof_2", 3 to "logo_hof_3")
+        val hofLogo = hack_logo[(1..3).random()] ?: "logo_hof_3"
         val hofLogoId = resources.getIdentifier(hofLogo, "drawable", requireContext().packageName)
         binding.hofLogo.setImageResource(hofLogoId)
 
+        val college_logo = mapOf(1 to "logo_pillai", 2 to "logo_mes")
+        val collegeLogo = college_logo[(1..2).random()] ?: "logo_pillai"
+        val collegeLogoId = resources.getIdentifier(collegeLogo, "drawable", requireContext().packageName)
+        binding.collegeLogo.setImageResource(collegeLogoId)
+
         binding.hofLogo.scaleX = 0f
         binding.hofLogo.scaleY = 0f
-
         binding.hofLogo.animate().scaleX(1f).scaleY(1f).setDuration(1000).setStartDelay(400).start()
+
+        binding.collegeLogo.scaleX = 0f
+        binding.collegeLogo.scaleY = 0f
+        binding.collegeLogo.animate().scaleX(1f).scaleY(1f).setDuration(1000).setStartDelay(400).start()
 
 //        val carousel = binding.collegeCarousel
 //        carousel.registerLifecycle(viewLifecycleOwner)

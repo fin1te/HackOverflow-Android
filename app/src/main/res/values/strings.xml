@@ -93,7 +93,13 @@
     <string name="hof_about_2">This Hackathon will be conducted from 16th-18th March in two separate (Offline &amp; Online) modes with separate winners and prizes/swags.</string>
     <string name="hof_about_3">The offline mode will take place on the 14-acre PHCET campus, providing participants with Food, Accommodation, Placement Opportunity, and Goodies for all participants.</string>
     <string name="hof_about_4">Get all details related to HackOverflow and both modes (Offline &amp; Online) in our Hackathon\'s Brochure.</string>
+
+    <string name="college_about_1">Pillai HOC College of Engineering and Technology is a leading institution in technology education that offers a state-of-the-art learning environment with modern facilities and experienced faculty.</string>
+    <string name="college_about_2">The college is inviting student developers from around the country to participate in a hackathon in March 2023, providing opportunities to showcase their skills and connect with industry leaders.</string>
+    <string name="college_about_3">The Department of Computer Engineering at Pillai HOC College of Engineering and Technology emphasizes both technical and ethical education, promoting innovative problem-solving and environmental protection.</string>
+    <string name="college_about_4">The department regularly organizes events such as Tech Thrive and Code Fest and encourages students to participate in hackathons, having 2 teams that achieved AIR 1 in the Smart India Hackathon 2022.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="college_about_5">Click below to view more details and pictures of the college and computer engineer department.</string>
 
 </resources>
