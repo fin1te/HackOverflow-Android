@@ -131,6 +131,7 @@ class TicketFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -138,6 +139,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -164,6 +166,7 @@ class TicketFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -171,6 +174,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -198,6 +202,7 @@ class TicketFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -205,6 +210,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -233,6 +239,7 @@ class TicketFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -240,6 +247,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
