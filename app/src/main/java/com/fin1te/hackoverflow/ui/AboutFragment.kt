@@ -30,6 +30,7 @@ class AboutFragment : Fragment() {
 
         textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
         textGradient(binding.phcetAboutTitle, "#FFFF80", "#FF80BF")
+        textGradient(binding.creditsTitle, "#8AFF80", "#81B3FF")
 
         val hack_logo = mapOf(1 to "logo_hof_1", 2 to "logo_hof_2", 3 to "logo_hof_3")
         val hofLogo = hack_logo[(1..3).random()] ?: "logo_hof_3"

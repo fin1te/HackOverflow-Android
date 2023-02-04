@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="90dp">
+                android:paddingBottom="100dp">
 
                 <!-- About Hackoverflow -->
                 <androidx.cardview.widget.CardView
@@ -160,6 +160,7 @@
                     android:id="@+id/about_college_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="visible"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="20dp"
@@ -274,6 +275,102 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <!-- Credits -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/credits_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/drac_dark"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/credits_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/fira_code_semibold"
+                            android:text="Credits"
+                            android:textAlignment="center"
+                            android:textColor="@color/drac_purple"
+                            android:textSize="24sp"
+                            tools:ignore="HardcodedText" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:layout_gravity="center"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/credits" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginVertical="5dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/credits_about_1"
+                            android:textColor="#C4FFBF"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginVertical="5dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/credits_about_2"
+                            android:textColor="#FFE7C5"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="17dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
+                            android:justificationMode="inter_word"
+                            android:text="@string/credits_about_3"
+                            android:textColor="#FFC0DF"
+                            android:textSize="13sp"
+                            app:fontFamily="@font/fira_code" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:dividerColor="@color/drac_bg"
+                            app:dividerInsetEnd="15dp"
+                            app:dividerInsetStart="15dp"
+                            app:dividerThickness="2dp" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="View Credits"
+                            android:textAlignment="center"
+                            android:textColor="@color/drac_purple"
+                            android:textSize="16sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </ScrollView>
