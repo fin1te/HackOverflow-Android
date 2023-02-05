@@ -99,8 +99,6 @@ class TicketFragment : Fragment() {
 
 
     private fun initializeOnClickListeners() {
-
-
         binding.shareAll.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
@@ -126,11 +124,11 @@ class TicketFragment : Fragment() {
                 startActivity(Intent.createChooser(intent, "Share"))
             }
         }
-
         binding.shareWhatsapp.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -138,6 +136,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -159,11 +158,11 @@ class TicketFragment : Fragment() {
                 }
             }
         }
-
         binding.shareTwitter.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -171,6 +170,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -193,11 +193,11 @@ class TicketFragment : Fragment() {
                 }
             }
         }
-
         binding.shareInstagram.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -205,6 +205,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -228,11 +229,11 @@ class TicketFragment : Fragment() {
                 }
             }
         }
-
         binding.shareLinkedin.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cardView = binding.ticketCard
                 binding.logoPillai.visibility = View.VISIBLE
+                setTicketBackground()
                 delay(100)
 
                 val bitmap = Bitmap.createBitmap(cardView.width, cardView.height, Bitmap.Config.ARGB_8888)
@@ -240,6 +241,7 @@ class TicketFragment : Fragment() {
                 cardView.draw(canvas)
 
                 binding.logoPillai.visibility = View.GONE
+                resetTicketBackground()
 
                 val outputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
@@ -265,7 +267,6 @@ class TicketFragment : Fragment() {
             }
         }
     }
-
 
     private fun setTicketBackground() {
         val random = (1..4).random()
@@ -304,7 +305,6 @@ class TicketFragment : Fragment() {
         binding.rightSemiCircle.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.drac_bg)
     }
 
-
     private fun setTextGradient() {
         textGradient(binding.hackoverflowTitle, "#9580FF", "#FF80BF")
         textGradient(binding.userName, "#FFFF80", "#FF80BF")
@@ -316,7 +316,6 @@ class TicketFragment : Fragment() {
         // Purple Cyan
         // textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
     }
-
 
     private fun textGradient(textView: TextView, color1: String, color2: String) {
         val paint = textView.paint
@@ -330,7 +329,6 @@ class TicketFragment : Fragment() {
         )
         textView.paint.shader = textShader
     }
-
 
     private fun generateQRCode(number: String, imageView: ImageView) {
         try {
@@ -356,10 +354,6 @@ class TicketFragment : Fragment() {
             e.printStackTrace()
         }
     }
-
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

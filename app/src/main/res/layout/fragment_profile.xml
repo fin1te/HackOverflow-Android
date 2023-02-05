@@ -104,7 +104,7 @@
                                     android:layout_height="80dp"
                                     android:background="@drawable/gradient_yellow_pink"
                                     app:civ_border_color="#00FFFFFF"
-                                    app:civ_border_width="2dp"
+                                    app:civ_border_width="3dp"
                                     tools:ignore="TooDeepLayout" />
                             </androidx.cardview.widget.CardView>
 
@@ -142,7 +142,7 @@
                                     android:layout_height="80dp"
                                     android:background="@drawable/gradient_yellow_pink"
                                     app:civ_border_color="#00FFFFFF"
-                                    app:civ_border_width="2dp"
+                                    app:civ_border_width="3dp"
                                     tools:ignore="TooDeepLayout" />
                             </androidx.cardview.widget.CardView>
 
@@ -180,7 +180,7 @@
                                     android:layout_height="80dp"
                                     android:background="@drawable/gradient_yellow_pink"
                                     app:civ_border_color="#00FFFFFF"
-                                    app:civ_border_width="2dp"
+                                    app:civ_border_width="3dp"
                                     tools:ignore="TooDeepLayout" />
                             </androidx.cardview.widget.CardView>
 

@@ -69,10 +69,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'com.airbnb.android:lottie:5.2.0'
 
-
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.google.zxing:core:3.4.0'
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
 
 }
