@@ -86,6 +86,27 @@
         <item>The hackathon is in session, notifications are adjourned.</item>
     </string-array>
 
+    <string-array name="collegeUnderConstruction">
+        <item>The college secrets are so top-notch, we need a little extra time to gather all the information. Hang tight, it\'s worth the wait!</item>
+        <item>We\'re putting the finishing touches on the college details section. It\'s going to be a masterpiece, trust us!</item>
+        <item>The About College section is currently undergoing renovations. Think of it as a spa day for your brain, we\'re making it even better!</item>
+        <item>Our team of detective elves are hard at work gathering all the details about the college. They\'ll have everything ready soon, we promise!</item>
+        <item>The About College section is taking a little break to catch its breath, but it\'ll be back soon with all the details you need to know. Just like your favorite TV show, it\'ll be worth the wait!</item>
+        <item>The About College section is in the oven, cooking up some juicy details for you. Stay tuned for the feast!</item>
+        <item>We know you\'re eager to learn more about our college, but patience is a virtue. Our About College section is just around the corner.</item>
+        <item>Construction in progress! But we promise, this section will be a work of art when we\'re done.</item>
+        <item>We\'re working hard to bring you the best and most comprehensive information about our college. Hang in there!</item>
+    </string-array>
+
+    <string-array name="creditsUnderConstruction">
+        <item>The credits page is coming soon! Just like a great movie, the people behind the scenes are just as important.</item>
+        <item>We\'re putting together a list of all the hardworking individuals and technologies that made this hackathon &amp; app possible. Hang tight, it\'s on its way!</item>
+        <item>Stay tuned, we\'re gathering all the details of the team and technologies that helped make this app a reality. It\'s going to be a page worth reading!</item>
+        <item>The credits page is taking a quick nap, but it\'ll be back with all the names and contributions of the real MVPs. Stay tuned, it\'s going to be legendary!</item>
+        <item>Our credits page is like a time capsule, preserving the memories of the heroes behind this hackathon. We just need a little more time to finish it.</item>
+        <item>The credits page is undergoing some polishing, adding the shining names of the people who made this hackathon possible. It\'ll be ready soon, we promise!</item>
+    </string-array>
+
     <string name="aboutCollege">Pillai HOC College of Engineering and Technology is a leading institution in technology education, offering a state-of-the-art learning environment with modern facilities and experienced faculty. The college is hosting a hackathon in March 2023 and seeking sponsorship from technology companies to provide opportunities for students to showcase their skills and connect with industry leaders. The Department of Computer Engineering at Pillai HOC College of Engineering and Technology emphasizes both technical and ethical education, promoting innovative problem-solving and environmental protection. The department regularly organizes events such as Tech Thrive and Code Fest and encourages students to participate in hackathons, having achieved AIR 1 in the Smart India Hackathon 2022. The college invites companies in the technology industry to join in their efforts to enhance student learning experiences through the upcoming hackathon. </string>
 
 

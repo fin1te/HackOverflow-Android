@@ -1,14 +1,17 @@
 package com.fin1te.hackoverflow.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.fin1te.hackoverflow.databinding.FragmentAboutBinding
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
@@ -28,27 +31,27 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
-        textGradient(binding.phcetAboutTitle, "#FFFF80", "#FF80BF")
-        textGradient(binding.creditsTitle, "#8AFF80", "#81B3FF")
+        setTextAndLogo()
 
-        val hack_logo = mapOf(1 to "logo_hof_1", 2 to "logo_hof_2", 3 to "logo_hof_3")
-        val hofLogo = hack_logo[(1..3).random()] ?: "logo_hof_3"
-        val hofLogoId = resources.getIdentifier(hofLogo, "drawable", requireContext().packageName)
-        binding.hofLogo.setImageResource(hofLogoId)
+        if (savedInstanceState != null) {
+            // restore the scroll position
+            binding.aboutScrollView.scrollTo(0, savedInstanceState.getInt("scrollY"))
+        }
 
-        val college_logo = mapOf(1 to "logo_pillai", 2 to "logo_mes")
-        val collegeLogo = college_logo[(1..2).random()] ?: "logo_pillai"
-        val collegeLogoId = resources.getIdentifier(collegeLogo, "drawable", requireContext().packageName)
-        binding.collegeLogo.setImageResource(collegeLogoId)
+        binding.clickBrochure.setOnClickListener {
+            val pdfIntent = Intent(Intent.ACTION_VIEW)
+            pdfIntent.data = Uri.parse("https://phcet.tech/brochure")
+            startActivity(pdfIntent)
+        }
 
-        binding.hofLogo.scaleX = 0f
-        binding.hofLogo.scaleY = 0f
-        binding.hofLogo.animate().scaleX(1f).scaleY(1f).setDuration(1000).setStartDelay(400).start()
+        binding.clickCollegeDetails.setOnClickListener {
+            findNavController().navigate(AboutFragmentDirections.actionAboutFragmentToAboutCollegeFragment())
+        }
 
-        binding.collegeLogo.scaleX = 0f
-        binding.collegeLogo.scaleY = 0f
-        binding.collegeLogo.animate().scaleX(1f).scaleY(1f).setDuration(1000).setStartDelay(400).start()
+        binding.clickCredits.setOnClickListener {
+            findNavController().navigate(AboutFragmentDirections.actionAboutFragmentToAboutCreditsFragment())
+        }
+
 
 //        val carousel = binding.collegeCarousel
 //        carousel.registerLifecycle(viewLifecycleOwner)
@@ -66,6 +69,33 @@ class AboutFragment : Fragment() {
 //        list.addAll(items)
 //
 //        carousel.setData(list)
+    }
+
+
+    private fun setTextAndLogo() {
+        textGradient(binding.hackoverflowTitle, "#80FFEA", "#9580FF")
+        textGradient(binding.phcetAboutTitle, "#FFFF80", "#FF80BF")
+        textGradient(binding.creditsTitle, "#8AFF80", "#81B3FF")
+
+        val hack_logo = mapOf(1 to "logo_hof_1", 2 to "logo_hof_2", 3 to "logo_hof_3")
+        val hofLogo = hack_logo[(1..3).random()] ?: "logo_hof_3"
+        val hofLogoId = resources.getIdentifier(hofLogo, "drawable", requireContext().packageName)
+        binding.hofLogo.setImageResource(hofLogoId)
+
+        val college_logo = mapOf(1 to "logo_pillai", 2 to "logo_mes")
+        val collegeLogo = college_logo[(1..2).random()] ?: "logo_pillai"
+        val collegeLogoId =
+            resources.getIdentifier(collegeLogo, "drawable", requireContext().packageName)
+        binding.collegeLogo.setImageResource(collegeLogoId)
+
+        binding.hofLogo.scaleX = 0f
+        binding.hofLogo.scaleY = 0f
+        binding.hofLogo.animate().scaleX(1f).scaleY(1f).setDuration(1000).setStartDelay(400).start()
+
+        binding.collegeLogo.scaleX = 0f
+        binding.collegeLogo.scaleY = 0f
+        binding.collegeLogo.animate().scaleX(1f).scaleY(1f).setDuration(1000).setStartDelay(400)
+            .start()
     }
 
 
