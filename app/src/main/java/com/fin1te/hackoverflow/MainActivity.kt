@@ -1,12 +1,10 @@
 package com.fin1te.hackoverflow
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.navigation.NavController
@@ -26,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         //DataBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -75,34 +72,6 @@ class MainActivity : AppCompatActivity() {
                     }
                     dialog.show()
                 }
-
-
-                // Show dialog to prompt user to update the app
-//                if (latestVersion != currentVersion) {
-//                    val dialog = AlertDialog.Builder(this@MainActivity)
-//                        .setCancelable(false)
-//                        .setTitle("Update Available")
-//                        .setMessage("Please update the app to the latest version to continue using the app")
-//                        .setPositiveButton("OK") { _, _ ->
-//                            startActivity(
-//                                Intent(
-//                                    Intent.ACTION_VIEW,
-//                                    Uri.parse("https://phcet.tech/app")
-//                                )
-//                            )
-//                        }.create()
-//                    dialog.show()
-//                            .setPositiveButton("OK") { _, _ ->
-//                                val appPackageName = packageName // get the package name
-//                                try {
-//                                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
-//                                } catch (e: ActivityNotFoundException) {
-//                                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
-//                                }
-//                            }
-
-//                }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
