@@ -101,7 +101,6 @@ class ProfileFragment : Fragment() {
             binding.user4card.visibility = View.VISIBLE
         }
 
-
         // Sign in with Google
         binding.googleSignIn.setOnClickListener {
 

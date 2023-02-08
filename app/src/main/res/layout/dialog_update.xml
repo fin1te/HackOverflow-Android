@@ -24,14 +24,26 @@
             android:textColor="@color/drac_purple"
             android:textSize="24sp" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/new_updates" />
+
         <TextView
             android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="10dp"
-            android:gravity="center"
-            android:text="A new version of the app is available. Please update to the latest version to continue using the app."
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:paddingHorizontal="10dp"
+            android:justificationMode="inter_word"
+            android:text="@string/update_text"
             android:textColor="@color/white"
             android:textSize="16sp" />
 

@@ -127,5 +127,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="college_about_5">Click below to view more details and pictures of the college and computer engineer department.</string>
+    <string name="update_text">An update\'s headed your way! Buckle up, things are about to get even better!\n\nUpdate the app from the Google Play Store by clicking below.</string>
 
 </resources>
