@@ -12,7 +12,7 @@
 This is the Android app for HackOverflow, a 3-day long National level Hackathon organized by Dept. of Computer Engineering, PHCET. 
 
 ## 👇🏼 Get it on Google Play
-<a href=''><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width='185' height='70'/></a>
+<a href='https://phcet.tech/app'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width='185' height='70'/></a>
 
 
 ## 📸 Screenshots 
