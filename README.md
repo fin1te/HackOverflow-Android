@@ -56,7 +56,7 @@ We welcome contributions to the HackOverflow-Android project! To contribute, ple
 1. Fork this repository
 2. Create a new branch for your changes
 3. Commit and push your changes to your fork
-4. Submit a pull request to the `master` branch
+4. Submit a pull request to the `develop` branch
 
 ## Contributors
 [![HoF Contributors](https://contrib.rocks/image?repo=HackOverflow-1-0/HackOverflow-Android)](https://github.com/HackOverflow-1-0/HackOverflow-Android/graphs/contributors)
