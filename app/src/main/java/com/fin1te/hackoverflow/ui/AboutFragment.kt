@@ -40,7 +40,7 @@ class AboutFragment : Fragment() {
 
         binding.clickBrochure.setOnClickListener {
             val pdfIntent = Intent(Intent.ACTION_VIEW)
-            pdfIntent.data = Uri.parse("https://phcet.tech/brochure")
+            pdfIntent.data = Uri.parse("https://phcet.tech/pdf")
             startActivity(pdfIntent)
         }
 
