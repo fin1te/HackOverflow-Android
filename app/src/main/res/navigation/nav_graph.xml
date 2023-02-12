@@ -8,5 +8,6 @@
     <include app:graph="@navigation/nav_home" />
     <include app:graph="@navigation/nav_notice" />
     <include app:graph="@navigation/nav_profile" />
+    <include app:graph="@navigation/nav_feed" />
 
 </navigation>
