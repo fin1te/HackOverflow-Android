@@ -15,6 +15,11 @@ import androidx.viewpager.widget.ViewPager
 import com.fin1te.hackoverflow.adapter.TimelinePagerAdapters
 import com.fin1te.hackoverflow.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -27,6 +32,12 @@ class HomeFragment : Fragment() {
     private lateinit var pViewPager: ViewPager
     private lateinit var pagerAdapters: TimelinePagerAdapters
     private var countDownTimer: CountDownTimer? = null
+
+    private var timerTitle = "Hackathon Starts In"
+    private var timerDate = 14
+    private var timerHour = 12
+    private var timerMinute = 0
+    private var timerSecond = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -41,10 +52,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        startCountDown() // Starts the countdown timer
+        getTimerDetailsFromFirebase()
 
-        textGradient(binding.countDownTimerTitle, "#80FFEA", "#9580FF")
+        //startCountDown() // Starts the countdown timer
+
+//        binding.countDownTimerTitle.text = timerTitle
+//
+//        textGradient(binding.countDownTimerTitle, "#80FFEA", "#9580FF")
         textGradient(binding.timelineTitle, "#FFFF80", "#FF80BF")
+
+
 
         binding.apply {
 
@@ -68,10 +85,37 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun getTimerDetailsFromFirebase() {
+        // TODO: Add time caching for the situation when no internet or DB error is there,
+        //  and show last fetched data, and add swipeRefreshLayout
+
+        val database = Firebase.database.reference
+
+        database.child("homeCountdownTimer").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                timerTitle = snapshot.child("title").value.toString()
+                timerDate = Integer.parseInt(snapshot.child("date").value.toString())
+                timerHour = Integer.parseInt(snapshot.child("hour").value.toString())
+                timerMinute = Integer.parseInt(snapshot.child("minute").value.toString())
+
+                startCountDown()
+                binding.countDownTimerTitle.text = timerTitle
+                textGradient(binding.countDownTimerTitle, "#80FFEA", "#9580FF")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                startCountDown()
+                binding.countDownTimerTitle.text = timerTitle
+                textGradient(binding.countDownTimerTitle, "#80FFEA", "#9580FF")
+            }
+
+        })
+    }
+
 
     private fun startCountDown() {
         val targetDate = Calendar.getInstance().apply {
-            set(2024, Calendar.MARCH, 14, 12, 0, 0)
+            set(2024, Calendar.MARCH, timerDate, timerHour, timerMinute, timerSecond)
         }.time
 
         countDownTimer?.cancel()
