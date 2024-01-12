@@ -52,7 +52,7 @@ class NoticeHolderFragment : Fragment() {
             noticeViewPager.adapter = noticePagerAdapters
 
             noticeTabs.setupWithViewPager(noticeViewPager)
-            // Tab Icons
+//            Tab Icons
 //            pTabs.getTabAt(0)!!.setIcon(R.drawable.offlineIcon)
 //            pTabs.getTabAt(1)!!.setIcon(R.drawable.onlineIcon)
         }

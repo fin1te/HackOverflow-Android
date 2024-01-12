@@ -29,7 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +44,6 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/empty_feed" />
-
             <TextView
                 android:id="@+id/noFeedText"
                 android:layout_width="match_parent"
@@ -58,6 +56,5 @@
                 android:textSize="16sp"
                 android:text="@string/textFeed"/>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

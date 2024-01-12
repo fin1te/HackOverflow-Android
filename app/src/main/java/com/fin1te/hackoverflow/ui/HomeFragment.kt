@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
 
     private fun startCountDown() {
         val targetDate = Calendar.getInstance().apply {
-            set(2023, Calendar.MARCH, 16, 0, 0, 0)
+            set(2024, Calendar.MARCH, 14, 12, 0, 0)
         }.time
 
         countDownTimer?.cancel()
